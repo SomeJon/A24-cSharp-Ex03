@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
-    internal class Car : Vehicle
+    internal class Car : Vehicle//.ihlhlikl
     {
         protected enum eColor
         {
