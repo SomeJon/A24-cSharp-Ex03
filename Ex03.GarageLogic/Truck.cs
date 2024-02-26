@@ -8,20 +8,20 @@ namespace Ex03.GarageLogic
 {
     internal class Truck : Vehicle
     {
-        private const byte k_TruckWheelNum = 12;
-        private const byte k_TruckMaxAirPressure = 28;
-        private const byte k_TruckMaxFuelCapacity = 110;
-        private bool m_CarriesHazardousMaterialsl;
+        internal const byte k_TruckWheelNum = 12;
+        internal const float k_TruckMaxAirPressure = 28;
+        internal const float k_TruckTankCapacityLiters = 110f;
+        internal const GasEngine.eGasType k_TruckGasType = GasEngine.eGasType.Soler;
+        private bool m_HazardousMaterialsl;
         private float m_CargoVolume;
-        private NonElectricVehicle m_NonElectricVehicle = new NonElectricVehicle(NonElectricVehicle.eFuelKind.Soler, k_TruckMaxFuelCapacity);
-        Wheel[] m_Wheels = new Wheel[k_TruckWheelNum];
 
-        public Truck(string i_LicensePlate) : base(i_LicensePlate)
+        internal Truck(string i_LicensePlate, byte i_WheelNum, float i_MaxAirPressure, GasEngine.eGasType i_GasType, float i_TankCapacityLiters)
+            : base(i_LicensePlate, i_WheelNum, i_MaxAirPressure, i_GasType, i_TankCapacityLiters) { }
+
+        internal override List<string> GetAttributesList()
         {
-            for (int i = 0; i < k_TruckWheelNum; i++)
-            {
-                m_Wheels[i] = new Wheel(k_TruckMaxAirPressure);
-            }
+            return new List<string> { "does truck carries hazardous material? (yes/no)",
+                "truck's cargo's volume" };
         }
     }
 }

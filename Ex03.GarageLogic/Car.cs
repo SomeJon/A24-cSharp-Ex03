@@ -6,29 +6,36 @@ using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
-    internal class Car : Vehicle//.ihlhlikl
+    internal class Car : Vehicle
     {
-        protected enum eColor
+        internal enum eColor
         {
-            Blue,
+            Blue = 1,
             White,
             Red,
             Yellow
         }
 
-        protected const byte k_CarWheelNum = 5;
-        protected const byte k_CarMaxAirPressure = 30;
-        protected eColor m_Color;
-        protected byte m_NumOfDoors;
-        Wheel[] m_Wheels = new Wheel[k_CarWheelNum];
+        internal const byte k_CarWheelNum = 5;
+        internal const float k_CarMaxAirPressure = 30;
+        internal const float k_NonElectricCarTankCapacityLiters = 58;
+        internal const GasEngine.eGasType k_NonElectricCarGasType = GasEngine.eGasType.Octan95;
+        internal const float k_ElectricCarBatteryCapacityHours = 4.8f;
+        private eColor m_Color;
+        private byte m_NumOfDoors;
 
-        public Car(string i_LicensePlate) : base(i_LicensePlate)
+        internal Car(string i_LicensePlate, byte i_WheelNum, float i_MaxAirPressure, GasEngine.eGasType i_GasType, float i_TankCapacityLiters)
+            : base(i_LicensePlate, i_WheelNum, i_MaxAirPressure, i_GasType, i_TankCapacityLiters) { }
+
+        internal Car(string i_LicensePlate, byte i_WheelNum, float i_MaxAirPressure, float i_BatteryCapacityHours)
+            : base(i_LicensePlate, i_WheelNum, i_MaxAirPressure, i_BatteryCapacityHours) { }
+
+
+
+        internal override List<string> GetAttributesList()
         {
-            for (int i = 0; i < k_CarWheelNum; i++) 
-            {
-                m_Wheels[i] = new Wheel(k_CarMaxAirPressure);
-            }
+            return new List<string> { "a number for car's color. options are:\n1- blue\n2- white\n3- red\n4-yellow",
+                "car's number of doors" };
         }
-
     }
 }
