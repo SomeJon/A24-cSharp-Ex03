@@ -8,7 +8,7 @@ namespace Ex03.ConsoleUI
 {
     internal class UI
     {
-        private class Messages
+        internal class Messages
         {
             internal const string k_Opening = "Hello! welcome to the garage!.\n\nbefore you is a menu." +
                 "please choose an option by entering the number beside it. for exiting please press 0";
@@ -22,6 +22,7 @@ namespace Ex03.ConsoleUI
                 "7. show a car's full details\n";
             internal const string k_IncorrectInput = "entered input in incorrect. please choose again: ";
             internal const string k_GetLicensePlate = "please enter vehicle's license plate: ";
+            internal const string k_VehicleNotInGarage = "there is no matching vehicle in garage.";
         }
 
         internal static GarageInterface.eMenueOptions ChooseOptionFromMenu()

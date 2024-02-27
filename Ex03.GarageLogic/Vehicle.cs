@@ -6,16 +6,21 @@ using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
-    internal abstract class Vehicle
+    internal class Vehicle
     {
         protected readonly string r_LicensePlate;
         protected string m_Model;
         protected List<Wheel> m_Wheels;
         protected Engine m_Engine;
 
-        protected Vehicle(string i_LicensePlate, int i_WheelNum, float i_MaxAirPressure) 
+        internal Vehicle(string i_LicensePlate)//a constructor only so we could create a vehicle with only a license plate for
+                                               //using the "indexOf" method in "GarageVehicleCard" class
         {
             r_LicensePlate = i_LicensePlate;
+        }
+
+        protected Vehicle(string i_LicensePlate, int i_WheelNum, float i_MaxAirPressure) : this(i_LicensePlate)
+        {
             m_Wheels = new List<Wheel>(i_WheelNum);
             for (int i = 0; i < i_WheelNum; i++)
             {
@@ -50,8 +55,5 @@ namespace Ex03.GarageLogic
             return m_Wheels[0].ToString() + m_Engine.ToString() +
                 string.Format("license plate: {0},\nmodel: {1},\n", r_LicensePlate, m_Model);
         }
-
-
-
     }
 }
