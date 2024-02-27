@@ -15,15 +15,15 @@ namespace Ex03.GarageLogic
         }
 
 
-        internal virtual List<string> GetAttributesList()
-        {
-            //todo
-        }
+        //internal virtual List<string> GetAttributesList()
+        //{
+        //   //todo
+        //}
 
-        public override string ToString()
-        {
-            //todo
-        }
+        //public override string ToString()
+        //{
+        //    //todo
+        //}
 
     }
 }

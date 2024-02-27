@@ -10,42 +10,82 @@ namespace Ex03.GarageLogic
     {
         internal enum eVehicleOptions
         {
-            NonElectricCar = 1,
+            FuelCar = 1,
             ElectricCar,
-            NonElectricMotorcycle,
+            FuelMotorcycle,
             ElectricMotorcycle,
             Truck
         }
 
-        internal Vehicle CreateVehicle(eVehicleOptions i_VehicleChoice, string i_LicensePlate)
+        internal static Vehicle CreateVehicle(eVehicleOptions i_VehicleChoice, string i_LicensePlate)
         {
-            Vehicle vehicle = null;
+            Vehicle newVehicleBase;
 
-            switch(i_VehicleChoice)
+            switch (i_VehicleChoice)
             {
-                case eVehicleOptions.NonElectricCar:
-                    vehicle =  new Car(i_LicensePlate, Car.k_CarWheelNum, Car.k_CarMaxAirPressure,
-                        Car.k_NonElectricCarGasType, Car.k_NonElectricCarTankCapacityLiters);
+                case eVehicleOptions.FuelCar:
+                    newVehicleBase = createFuelCarBase(i_LicensePlate);
                     break;
                 case eVehicleOptions.ElectricCar:
-                    vehicle = new Car(i_LicensePlate, Car.k_CarWheelNum, Car.k_CarMaxAirPressure, Car.k_ElectricCarBatteryCapacityHours);
+                    newVehicleBase = createElectricCarBase(i_LicensePlate);
                     break;
-                case eVehicleOptions.NonElectricMotorcycle:
-                    vehicle = new Motorcycle(i_LicensePlate, Motorcycle.k_MotorcycleWheelNum, Motorcycle.k_MotorcycleMaxAirPressure,
-                        Motorcycle.k_NonElectricMotorcycleGasType, Motorcycle.k_NonElectricMotorcycleTankCapacityLiters);
+                case eVehicleOptions.FuelMotorcycle:
+                    newVehicleBase = createFuelMotorcycleBase(i_LicensePlate);
                     break;
                 case eVehicleOptions.ElectricMotorcycle:
-                    vehicle = new Motorcycle(i_LicensePlate, Motorcycle.k_MotorcycleWheelNum, Motorcycle.k_MotorcycleMaxAirPressure,
-                        Motorcycle.k_ElectricMotorcycleBatteryCapacityHours);
+                    newVehicleBase = createElectricMotorcycleBase(i_LicensePlate);
                     break;
                 case eVehicleOptions.Truck:
-                    vehicle = new Truck(i_LicensePlate, Truck.k_TruckWheelNum, Truck.k_TruckMaxAirPressure,
-                        Truck.k_TruckGasType, Truck.k_TruckTankCapacityLiters);
+                    newVehicleBase = createTruckBase(i_LicensePlate);
                     break;
+                default:
+                    throw new Exception("No car to create was found");
             }
 
-            return vehicle;
+            return newVehicleBase;
         }
-        
+
+        private static Vehicle createFuelCarBase(string i_LicensePlate)
+        {
+            const float k_CarFuelTankCapacityLiters = 58;
+            const FuelEngine.eFuelType k_FuelCarFuelType = FuelEngine.eFuelType.Octan95;
+
+            Engine carEngine = new FuelEngine(k_FuelCarFuelType, k_CarFuelTankCapacityLiters);
+            return new Car(i_LicensePlate, carEngine);
+        }
+
+        private static Vehicle createElectricCarBase(string i_LicensePlate)
+        {
+            const float k_CarElectricBatteryCapacityHours = 4.8f;
+
+            Engine carEngine = new ElectricEngine(k_CarElectricBatteryCapacityHours);
+            return new Car(i_LicensePlate, carEngine);
+        }
+
+        private static Vehicle createFuelMotorcycleBase(string i_LicensePlate)
+        {
+            const float k_FuelMotorcycleTankCapacityLiters = 5.8f;
+            const FuelEngine.eFuelType k_FuelMotorcycleGasType = FuelEngine.eFuelType.Octan98;
+
+            Engine motorcycleEngine = new FuelEngine(k_FuelMotorcycleGasType, k_FuelMotorcycleTankCapacityLiters);
+            return new Motorcycle(i_LicensePlate, motorcycleEngine);
+        }
+
+        private static Vehicle createElectricMotorcycleBase(string i_LicensePlate)
+        {
+            const float k_ElectricMotorcycleBatteryCapacityHours = 2.8f;
+
+            Engine motorcycleEngine = new ElectricEngine(k_ElectricMotorcycleBatteryCapacityHours);
+            return new Motorcycle(i_LicensePlate, motorcycleEngine);
+        }
+
+        private static Vehicle createTruckBase(string i_LicensePlate)
+        {
+            const float k_TruckTankCapacityLiters = 110f;
+            const FuelEngine.eFuelType k_TruckFuelType = FuelEngine.eFuelType.Soler;
+
+            Engine motorcycleEngine = new FuelEngine(k_TruckFuelType, k_TruckTankCapacityLiters);
+            return new Motorcycle(i_LicensePlate, motorcycleEngine);
+        }
     }
 }

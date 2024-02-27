@@ -44,9 +44,9 @@ namespace Ex03.GarageLogic
             }
         }
 
-        internal override List<string> GetAttributesList()
-        {
-        }
+        //internal override List<string> GetAttributesList()
+        //{
+        //}
     }
   
 }

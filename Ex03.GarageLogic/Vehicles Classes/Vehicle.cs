@@ -24,14 +24,14 @@ namespace Ex03.GarageLogic
             get { return r_LicensePlate; }
         }
 
-        internal virtual List<string> GetAttributesList()
-        {
+        //internal virtual List<string> GetAttributesList()
+        //{
 
-        }
+        //}
 
-        public override string ToString()
-        {
+        //public override string ToString()
+        //{
             
-        }
+       // }
     }
 }
