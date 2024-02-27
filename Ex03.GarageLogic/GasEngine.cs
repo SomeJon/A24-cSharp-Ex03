@@ -25,25 +25,14 @@ namespace Ex03.GarageLogic
             r_TankCapacityLiters = i_TankCapacityLiters;
         }
 
-        private void FillGasTank(float i_LitersToAdd, eGasType i_GasType)
-        {
-            if (i_GasType != r_GasType)
-            {
-                //exception
-            }
-            else if (m_CurrentPowerPercentage + i_LitersToAdd > r_TankCapacityLiters)
-            {
-                //exception
-            }
-            else
-            {
-                m_CurrentPowerPercentage += i_LitersToAdd;
-            }
-        }
-
         internal override List<string> GetAttributesList()
         {
             return new List<string> { "vehicle's fuel level in liters" };
+        }
+
+        public override string ToString()
+        {
+            return base.ToString() + string.Format("fuel type is:: {0}\n", r_GasType);
         }
     }
 }

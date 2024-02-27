@@ -8,12 +8,19 @@ namespace Ex03.ConsoleUI
 {
     internal class GarageInterface
     {
-        internal enum eMenuOptions
+        internal enum eMenueOptions
         {
-            EnterNewCarToGarage = 1,
-
-            ChangeVehicleState,
-
+            Exit,
+            EnterNewCar,
+            ShowLicensePlates,
+            ChangeCarState,
+            InflateCarWheels,
+            FuelUpVehicle,
+            ChargeUpVehicle,
+            FullShowCar
         }
+
+        internal const int k_NumOfFirstMenuOption = 0;
+        internal const int k_NumOfLastMenuOption = 7;
     }
 }

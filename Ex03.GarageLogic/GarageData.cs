@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
-    internal class GarageData
+    public class GarageData
     {
-        internal const int k_VehicleNotFound = -1; 
         private  List<GarageVehicleCard> m_ListOfVehicles;
-        
-
     }
 }
