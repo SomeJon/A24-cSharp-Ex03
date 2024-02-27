@@ -20,18 +20,23 @@ namespace Ex03.GarageLogic
         private eVehicleStatus m_VehicleStatus = eVehicleStatus.Repair;
         private Vehicle m_Vehicle;
 
+        internal GarageVehicleCard(Vehicle i_Vehicle)
+        {
+            m_Vehicle = i_Vehicle;
+        }
+
         internal List<string> GetAttributesList()
         {
             return new List<string> { "owner's name", "owner's phone number" };
         }
 
-        public override bool Equals(object i_LicensePlate)
+        public override bool Equals(object i_Obj)
         {
             bool eqauls = false;
-            string toCompareTo = i_LicensePlate as string;
+            GarageVehicleCard toCompareTo = i_Obj as GarageVehicleCard;
             if (toCompareTo != null)
             {
-                eqauls = this.GetHashCode() == i_LicensePlate.GetHashCode();
+                eqauls = this.GetHashCode() == i_Obj.GetHashCode();
             }
 
             return eqauls;
