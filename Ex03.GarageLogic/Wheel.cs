@@ -12,18 +12,19 @@ namespace Ex03.GarageLogic
         private float m_AirPressure;
         private readonly float r_MaxAirPressure;
 
-        public Wheel(float i_MaxAirPressure)
+        internal Wheel(float i_MaxAirPressure)
         {
             r_MaxAirPressure = i_MaxAirPressure;
         }  
-        public void InflatingWheel(float i_AirPressureToAdd) 
-        {
-            if (m_AirPressure + i_AirPressureToAdd > r_MaxAirPressure)
-            {
-                //exception
-            }
 
-            m_AirPressure += i_AirPressureToAdd;
+        internal List<string> GetAttributesList()
+        {
+            return new List<string> { "wheel's manufacturer", "wheel's air pressure" };
+        }
+
+        public override string ToString()
+        {
+            return string.Format("wheels manufacturer: {0},\ncurrent air pressure: {1}\n", m_Manufacturer, m_AirPressure);
         }
     }
 }
