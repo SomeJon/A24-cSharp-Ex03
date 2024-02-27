@@ -29,10 +29,10 @@ namespace Ex03.ConsoleUI
         {
             string licensePlate = UI.GetLicensePlate();
 
-            if(!m_Garage.ShowVehicleFullDetails(licensePlate))
-            {
-                Console.WriteLine(UI.Messages.k_VehicleNotInGarage);
-            }
+            //if(!m_Garage.ShowVehicleFullDetails(licensePlate))
+            //{
+            //    Console.WriteLine(UI.Messages.k_VehicleNotInGarage);
+            //}
         }
 
         internal eMenueOptions MenuRun(eMenueOptions i_MenuOption)
@@ -44,6 +44,7 @@ namespace Ex03.ConsoleUI
                     break;
 
             }
+            return eMenueOptions.FullShowCar;
         }
     }
 }

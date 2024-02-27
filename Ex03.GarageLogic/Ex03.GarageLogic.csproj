@@ -47,7 +47,7 @@
     <Compile Include="Engines Classes\Engine.cs" />
     <Compile Include="GarageData.cs" />
     <Compile Include="GarageVehicleCard.cs" />
-    <Compile Include="Engines Classes\GasEngine.cs" />
+    <Compile Include="Engines Classes\FuelEngine.cs" />
     <Compile Include="Vehicles Classes\Motorcycle.cs" />
     <Compile Include="Vehicles Classes\Truck.cs" />
     <Compile Include="Vehicles Classes\Vehicle.cs" />

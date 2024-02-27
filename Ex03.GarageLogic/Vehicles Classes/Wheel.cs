@@ -62,14 +62,14 @@ namespace Ex03.GarageLogic
             }
         }
 
-        internal List<string> GetAttributesList()
-        {
+        //internal List<string> GetAttributesList()
+        //{
             //todo
-        }
+        //}
 
-        public override string ToString()
-        {
+        //public override string ToString()
+        //{
             //todo
-        }
+        //}
     }
 }

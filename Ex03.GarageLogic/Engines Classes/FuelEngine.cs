@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace Ex03.GarageLogic
 {
-    internal class GasEngine : Engine
+    internal class FuelEngine : Engine
     {
-        internal enum eGasType
+        internal enum eFuelType
         {
             Octan95,
             Octan96,
@@ -15,7 +15,7 @@ namespace Ex03.GarageLogic
         }
 
         private readonly float r_TankCapacityLiters;
-        private readonly eGasType r_GasType;
+        private readonly eFuelType r_FuelType;
         private float m_CurrentFuel = 0;
 
         public float CurrentFuel
@@ -35,17 +35,17 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public GasEngine(eGasType i_GasType, float i_TankCapacityLiters)
+        public FuelEngine(eFuelType i_FuelType, float i_TankCapacityLiters)
         {
-            r_GasType = i_GasType;
+            r_FuelType = i_FuelType;
             r_TankCapacityLiters = i_TankCapacityLiters;
         }
 
-        internal void FillGasTank(float i_AmountOfGas)
+        internal void FillFuelTank(float i_AmountOfFuel)
         {
             try
             {
-                CurrentFuel += i_AmountOfGas;
+                CurrentFuel += i_AmountOfFuel;
             }
             catch (ValueOutOfRangeException io_FailedFillingFuel)
             {
@@ -53,8 +53,8 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public override string ToString()
-        {
-        }
+        //public override string ToString()
+        //{
+        //}
     }
 }
