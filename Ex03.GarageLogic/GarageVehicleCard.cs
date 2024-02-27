@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
-    internal class GarageVehicleCard
+    public class GarageVehicleCard
     {
         private enum eVehicleStatus
         {
@@ -50,6 +50,12 @@ namespace Ex03.GarageLogic
         public static bool operator !=(GarageVehicleCard i_Vehicle1, GarageVehicleCard i_Vehicle2)
         {
             return i_Vehicle1.GetHashCode() != i_Vehicle2.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return string.Format("the vehicle is a: {0},\nowner's name: {1},\nvehicle's status: {2}\n",
+                m_Vehicle.GetType().Name , m_OwnerName, m_VehicleStatus) + m_Vehicle.ToString();
         }
     }
 }

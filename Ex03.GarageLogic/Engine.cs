@@ -15,5 +15,10 @@ namespace Ex03.GarageLogic
             return new List<string> { "current power percentage in tank/battery" };
         }
 
+        public override string ToString()
+        {
+            return string.Format("current power percentage: {0}\n", m_CurrentPowerPercentage);
+        }
+
     }
 }

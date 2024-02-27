@@ -16,19 +16,15 @@ namespace Ex03.GarageLogic
         {
             r_MaxAirPressure = i_MaxAirPressure;
         }  
-        internal void FillAir(float i_AirToAdd) 
-        {
-            if (m_AirPressure + i_AirToAdd > r_MaxAirPressure)
-            {
-                //exception
-            }
-
-            m_AirPressure += i_AirToAdd;
-        }
 
         internal List<string> GetAttributesList()
         {
             return new List<string> { "wheel's manufacturer", "wheel's air pressure" };
+        }
+
+        public override string ToString()
+        {
+            return string.Format("wheels manufacturer: {0},\ncurrent air pressure: {1}\n", m_Manufacturer, m_AirPressure);
         }
     }
 }
