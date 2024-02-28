@@ -69,6 +69,7 @@ namespace Ex03.ConsoleUI
             GarageVehicleCard newCard;
             VehicleFactory.eVehicleOptions vehicleChosen;
             Vehicle newVehicle;
+            bool checkSuccess;
 
             if (m_Garage.isVehicleInGarage(recivedLicense))
             {
@@ -82,6 +83,24 @@ namespace Ex03.ConsoleUI
                 vehicleChosen = UI.GetVehicleChoice();
                 newVehicle = VehicleFactory.CreateVehicle(vehicleChosen, recivedLicense);
                 newCard.CardVehicle = newVehicle;
+                checkSuccess = false;
+                while (!checkSuccess)
+                {
+                    try
+                    {
+                        recivedAttributes = UI.GetAttributes(newVehicle.GetAttributesList(), newVehicle.GetType().Name);
+                        newVehicle.EnterAtributes(recivedAttributes);
+                        checkSuccess = true;
+                    }
+                    catch (Exception i_Exception) 
+                    {
+                        UI.PrintExceptions(i_Exception);
+                    }
+                }
+
+                recivedAttributes = newVehicle.GetAttributeValuesAsStringList();
+
+                Console.WriteLine(recivedAttributes.ToString());
             }
         }
     }

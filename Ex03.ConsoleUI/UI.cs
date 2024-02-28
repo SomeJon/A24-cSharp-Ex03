@@ -174,7 +174,13 @@ k_MenuOption5, k_MenuOption6, k_MenuOption7, ' ', k_MenuOption0, new String('-',
                     checkInput = true;
                 }
             }
-
         }
+
+        internal static void PrintExceptions(Exception i_Exception)
+        {
+            Console.WriteLine(i_Exception.Message);
+        }
+
+
     }
 }

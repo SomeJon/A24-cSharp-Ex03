@@ -15,15 +15,11 @@ namespace Ex03.GarageLogic
         }
 
 
-        //internal virtual List<string> GetAttributesList()
-        //{
-        //   //todo
-        //}
+        internal abstract List<string> GetAttributesList();
 
-        //public override string ToString()
-        //{
-        //    //todo
-        //}
+        internal abstract void EnterAtributes(List<string> i_Atributes);
+
+        public abstract List<string> GetAttributeValuesAsStringList();
 
     }
 }
