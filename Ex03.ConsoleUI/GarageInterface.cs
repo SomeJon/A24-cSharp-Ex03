@@ -79,7 +79,7 @@ namespace Ex03.ConsoleUI
                 case eMenueOptions.ChargeUpVehicle:
                     ChargeElectricVehicle();
                     break;
-                case eMenueOptions.FullShowCar:
+                case eMenueOptions.FullCardShow:
                     FullCardShow();
                     break;
                 case eMenueOptions.ChangeCarLoadSetting:
