@@ -16,7 +16,7 @@ namespace Ex03.ConsoleUI
             InflateCarWheels,
             FuelUpVehicle,
             ChargeUpVehicle,
-            FullShowCar,
+            FullCardShow,
             ChangeCarLoadSetting
         }
 
@@ -37,7 +37,7 @@ namespace Ex03.ConsoleUI
         {
             m_Garage = new GarageData();
         }
-        private void FullVehicleShow()
+        private void FullCardShow()
         {
             string licensePlate = UI.GetLicensePlate();
             GarageVehicleCard foundCard = m_Garage.FindVehicle(licensePlate);
@@ -80,7 +80,7 @@ namespace Ex03.ConsoleUI
                     ChargeElectricVehicle();
                     break;
                 case eMenueOptions.FullShowCar:
-                    FullVehicleShow();
+                    FullCardShow();
                     break;
                 case eMenueOptions.ChangeCarLoadSetting:
                     UI.ChangeWheelsSetupMenu();
@@ -119,7 +119,7 @@ namespace Ex03.ConsoleUI
 
             if(licences != null)
             {
-
+                UI.ShowVehicleLicences(licences);
             }
         }
 
@@ -162,6 +162,7 @@ namespace Ex03.ConsoleUI
 
                 UI.GetVehicleStatus(out statusChosen);
                 newCard.VehicleStatus = statusChosen;
+                m_Garage.AddCardToList(newCard);
             }
         }
 

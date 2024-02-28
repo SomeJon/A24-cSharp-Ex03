@@ -17,6 +17,8 @@ namespace Ex03.GarageLogic
             Yellow
         }
 
+        private const int k_MinDoors = 2;
+        private const int k_MaxDoors= 5;
         private const int k_CarWheelNum = 5;
         private const float k_WheelMaxAirPressure = 30; 
         private eColor m_Color;
@@ -43,15 +45,18 @@ namespace Ex03.GarageLogic
         public override void EnterAtributes(List<string> i_Atributes)
         {
             const int numOfExpectedAttributes = 2;
+            int inputedValue;
 
             try
             {
                 base.EnterAtributes(i_Atributes);
                 m_Color = turnStringToEColor(i_Atributes[0]);
-                if(!int.TryParse(i_Atributes[1], out m_NumOfDoors))
+                if(!int.TryParse(i_Atributes[1], out inputedValue))
                 {
                     throw new FormatException("Car-Doors: Wrong format! Expected an int");
                 }
+                FrequantActions.EnterintValueInRange(ref m_NumOfDoors, inputedValue, "Number of doors", k_MaxDoors, k_MinDoors);
+                
             }
             catch (Exception i_Exception)
             {

@@ -19,9 +19,9 @@ namespace Ex03.ConsoleUI
             internal const string k_MenuOption2 = "2) Show garage's car's license plates with the option to filter by vehicle condition";
             internal const string k_MenuOption3 = "3) Change a car's state";
             internal const string k_MenuOption4 = "4) Inflate a car's wheels to maximum air pressure";
-            internal const string k_MenuOption5 = "5) Fuel up a fuel electric car";
+            internal const string k_MenuOption5 = "5) Fuel up a fuel car";
             internal const string k_MenuOption6 = "6) Charge an electric car";
-            internal const string k_MenuOption7 = "7) Show a car's full details";
+            internal const string k_MenuOption7 = "7) Show a vehicle's full details";
             internal const string k_MenuOption8 = "8) Change new vehicle load settings menu";
 
             internal const string k_IncorrectInput = "Entered input in incorrect. please choose again: ";
@@ -44,6 +44,7 @@ namespace Ex03.ConsoleUI
             internal const string k_Found = "Found";
             internal const string k_AddingFuelType = "Please chose a fuel type from list to fill:";
             internal const string k_AddingActionFloat = "Please chose an amount to {0}:";
+            internal const string k_Nun = "None were found.";
 
             internal const string k_ShowLicencesOfCarsMenu =
 @"Please choose a number representing a choice:
@@ -209,6 +210,8 @@ k_MenuOption5, k_MenuOption6, k_MenuOption7, ' ', k_MenuOption0, new String('-',
             {
                 Console.WriteLine(@"{0}: {1}", attributeNames.ElementAt(i), attributeValues.ElementAt(i));
             }
+
+            PrintAllInfoOfVehicle(i_CardToPrintInfo.CardVehicle);
         }
 
         internal static void PrintAllInfoOfVehicle(Vehicle i_VehicleToPrintInfo)
@@ -290,9 +293,16 @@ k_MenuOption5, k_MenuOption6, k_MenuOption7, ' ', k_MenuOption0, new String('-',
         internal static void ShowVehicleLicences(List<string> i_VehicleLicences) 
         {
             Console.WriteLine(@"{0}: ", Messages.k_Found);
-            foreach(string licences in i_VehicleLicences)
+            if (i_VehicleLicences == null || i_VehicleLicences.Count == 0)
             {
-                Console.WriteLine(licences);
+                Console.WriteLine(@"{0}", Messages.k_Nun);
+            }
+            else
+            {
+                foreach (string licences in i_VehicleLicences)
+                {
+                    Console.WriteLine(licences);
+                }
             }
         }
 
