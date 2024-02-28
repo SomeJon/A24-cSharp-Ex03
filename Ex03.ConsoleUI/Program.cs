@@ -7,7 +7,21 @@ namespace Ex03.ConsoleUI
     {
         public static void Main()
         {
-            Console.WriteLine(UI.Messages.k_MenuOptions);
+            RunGarage();
+        }
+
+        public static void RunGarage()
+        {
+            bool isProgramStillRunning;
+            GarageInterface garageInterfaceInstance = new GarageInterface();
+
+            UI.ProgramStart();
+            do
+            {
+                garageInterfaceInstance.MenuRun(out isProgramStillRunning);
+            }
+            while(isProgramStillRunning);
+
         }
     }
 }

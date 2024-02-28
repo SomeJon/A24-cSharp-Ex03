@@ -21,9 +21,12 @@ namespace Ex03.ConsoleUI
             internal const string k_MenuOption6 = "6) Charge an electric car";
             internal const string k_MenuOption7 = "7) Show a car's full details";
 
-            internal const string k_IncorrectInput = "entered input in incorrect. please choose again: ";
-            internal const string k_GetLicensePlate = "please enter vehicle's license plate: ";
-            internal const string k_VehicleNotInGarage = "there is no matching vehicle in garage.";
+            internal const string k_IncorrectInput = "Entered input in incorrect. please choose again: ";
+            internal const string k_GetLicensePlate = "Please enter vehicle's license plate: ";
+            internal const string k_VehicleNotInGarage = "There is no matching vehicle in garage.";
+            internal const string k_AttributeListRequest = "Please enter the requsted info of {0]:";
+            internal const string k_VehicleIsAlreadyInGarage = "Requsted Vehicle is in the garage, changing status to Repair...";
+
 
             internal static string k_MenuOptions = string.Format(
 @"{0}Menu{0}
@@ -41,34 +44,57 @@ new String('-', 46), k_MenuOption1, k_MenuOption2, k_MenuOption3, k_MenuOption4,
 k_MenuOption5, k_MenuOption6, k_MenuOption7, ' ', k_MenuOption0, new String('-', 96));
         }
 
-        internal static GarageInterface.eMenueOptions ChooseOptionFromMenu()
+        internal static void ProgramStart()
+        {
+            Console.WriteLine(Messages.k_Opening);
+        }
+
+
+        internal static void Menu(out GarageInterface.eMenueOptions o_ChosenOption)
         {
             string userStrInput;
-            int userInput;
-            bool isInputOk;
+            bool isInputOk = false;
+            GarageInterface.eMenueOptions userChoice;
 
-            Console.WriteLine(Messages.k_Opening);
             Console.WriteLine(Messages.k_MenuOptions);
             userStrInput = Console.ReadLine();
-            isInputOk = !int.TryParse(userStrInput, out userInput) &&
-                (userInput < GarageInterface.k_NumOfFirstMenuOption || userInput > GarageInterface.k_NumOfLastMenuOption);
-            while (!isInputOk)
-            { 
+
+            isInputOk = GarageInterface.eMenueOptions.TryParse(userStrInput, out userChoice);
+            while (!isInputOk || !Enum.IsDefined(typeof(GarageInterface.eMenueOptions), userChoice))
+            {
                 Console.WriteLine(Messages.k_IncorrectInput);
-                Console.WriteLine(Messages.k_Opening);
-                Console.WriteLine(Messages.k_MenuOptions);
                 userStrInput = Console.ReadLine();
-                isInputOk = !int.TryParse(userStrInput, out userInput) &&
-                    (userInput < GarageInterface.k_NumOfFirstMenuOption || userInput > GarageInterface.k_NumOfLastMenuOption);
+                isInputOk = GarageInterface.eMenueOptions.TryParse(userStrInput, out userChoice);
             }
 
-            return (GarageInterface.eMenueOptions)userInput;
+            o_ChosenOption = userChoice;
         }
 
         internal static string GetLicensePlate()
         {
             Console.WriteLine(Messages.k_GetLicensePlate);
             return Console.ReadLine();
+        }
+
+        internal static List<string> GetAttributes(List<string> i_Attributes, string i_NameOfRecivingObject)
+        {
+            List<string> recivedAttributes = new List<string>();
+            string userInput;
+
+            Console.WriteLine(Messages.k_AttributeListRequest, i_NameOfRecivingObject);
+            foreach (string attribute in i_Attributes)
+            {
+                Console.Write(@"{0}: ", attribute);
+                userInput = Console.ReadLine();
+                recivedAttributes.Add(userInput);
+            }
+
+            return recivedAttributes;
+        }
+
+        internal static void CarInGarageMessage()
+        {
+            Console.WriteLine(Messages.k_VehicleIsAlreadyInGarage);
         }
     }
 }
