@@ -40,8 +40,18 @@ namespace Ex03.ConsoleUI
             internal const string k_Electric = "Electric ";
             internal const string k_LicensePlate = "License Plate";
             internal const string k_Status = "Status";
-
             internal const string k_GetStatus = "Please choose a number representing status of vehicle:";
+            internal const string k_Found = "Found";
+
+            internal const string k_ShowLicencesOfCarsMenu =
+@"Please choose a number representing a choice:
+1) All vehicles licences
+2) Vehicles licences yet to be Repaired
+3) Repaired vehicles licences
+3) Paid vehicles licences cards
+
+0) back";
+
 
             internal static string k_MenuOptions = string.Format(
 @"{0}Menu{0}
@@ -76,7 +86,7 @@ k_MenuOption5, k_MenuOption6, k_MenuOption7, ' ', k_MenuOption0, new String('-',
             userStrInput = Console.ReadLine();
 
             isInputOk = GarageInterface.eMenueOptions.TryParse(userStrInput, out userChoice);
-            while (!isInputOk || !Enum.IsDefined(typeof(GarageInterface.eMenueOptions), userChoice))
+            while(!isInputOk || !Enum.IsDefined(typeof(GarageInterface.eMenueOptions), userChoice))
             {
                 Console.WriteLine(Messages.k_IncorrectInput);
                 userStrInput = Console.ReadLine();
@@ -98,7 +108,7 @@ k_MenuOption5, k_MenuOption6, k_MenuOption7, ' ', k_MenuOption0, new String('-',
             string userInput;
 
             Console.WriteLine(Messages.k_AttributeListRequest, i_NameOfRecivingObject);
-            foreach (string attribute in i_Attributes)
+            foreach(string attribute in i_Attributes)
             {
                 Console.Write(@"{0}: ", attribute);
                 userInput = Console.ReadLine();
@@ -121,7 +131,7 @@ k_MenuOption5, k_MenuOption6, k_MenuOption7, ' ', k_MenuOption0, new String('-',
             bool isInputOk;
 
             Console.WriteLine(Messages.k_VehicleChoiceStartDialog);
-            foreach (string vehicleName in VehicleFactory.s_VehicleOptions)
+            foreach(string vehicleName in VehicleFactory.s_VehicleOptions)
             {
                 Console.WriteLine(@"{0}) {1}", choiceToPrint, vehicleName);
                 choiceToPrint++;
@@ -129,7 +139,7 @@ k_MenuOption5, k_MenuOption6, k_MenuOption7, ' ', k_MenuOption0, new String('-',
             userStrInput = Console.ReadLine();
 
             isInputOk = VehicleFactory.eVehicleOptions.TryParse(userStrInput, out userChoice);
-            while (!isInputOk || !Enum.IsDefined(typeof(VehicleFactory.eVehicleOptions), userChoice))
+            while(!isInputOk || !Enum.IsDefined(typeof(VehicleFactory.eVehicleOptions), userChoice))
             {
                 Console.WriteLine(Messages.k_IncorrectInput);
                 userStrInput = Console.ReadLine();
@@ -175,7 +185,7 @@ k_MenuOption5, k_MenuOption6, k_MenuOption7, ' ', k_MenuOption0, new String('-',
                     checkInput = true;
                     Vehicle.SwitchLoadAllWheelsAtOnce();
                 }
-                else if (String.Equals(userStrInput, Messages.k_No, StringComparison.OrdinalIgnoreCase))
+                else if(String.Equals(userStrInput, Messages.k_No, StringComparison.OrdinalIgnoreCase))
                 {
                     checkInput = true;
                 }
@@ -193,7 +203,7 @@ k_MenuOption5, k_MenuOption6, k_MenuOption7, ' ', k_MenuOption0, new String('-',
             List<string> attributeValues = i_CardToPrintInfo.GetAttributeValuesAsStringList();
 
             Console.WriteLine(@"{0}: {1}", Messages.k_Status, i_CardToPrintInfo.VehicleStatus);
-            for (int i = 0; i < attributeNames.Count; i++)
+            for(int i = 0; i < attributeNames.Count; i++)
             {
                 Console.WriteLine(@"{0}: {1}", attributeNames.ElementAt(i), attributeValues.ElementAt(i));
             }
@@ -204,13 +214,13 @@ k_MenuOption5, k_MenuOption6, k_MenuOption7, ' ', k_MenuOption0, new String('-',
             List<string> attributeNames;
             List<string> attributeValues;
 
-            if (i_VehicleToPrintInfo.IsElectric())
+            if(i_VehicleToPrintInfo.IsElectric())
             {
                 Console.Write(Messages.k_Electric);
             }
 
             Console.WriteLine(i_VehicleToPrintInfo.GetType().Name);
-            if (Vehicle.LoadAllWheelsAtOnce == true)
+            if(Vehicle.LoadAllWheelsAtOnce == true)
             {
                 Vehicle.SwitchLoadAllWheelsAtOnce();
                 attributeNames = i_VehicleToPrintInfo.GetAttributesList();
@@ -237,7 +247,7 @@ k_MenuOption5, k_MenuOption6, k_MenuOption7, ' ', k_MenuOption0, new String('-',
             GarageVehicleCard.eVehicleStatus userChoice;
 
             Console.WriteLine(Messages.k_GetStatus);
-            foreach (string enumName in Enum.GetNames(typeof(GarageVehicleCard.eVehicleStatus)))
+            foreach(string enumName in Enum.GetNames(typeof(GarageVehicleCard.eVehicleStatus)))
             {
                 Console.WriteLine(@"{0}) {1}", count, enumName);
                 count++;
@@ -245,7 +255,7 @@ k_MenuOption5, k_MenuOption6, k_MenuOption7, ' ', k_MenuOption0, new String('-',
 
             userStrInput = Console.ReadLine();
             isInputOk = GarageVehicleCard.eVehicleStatus.TryParse(userStrInput, out userChoice);
-            while (!isInputOk || !Enum.IsDefined(typeof(GarageVehicleCard.eVehicleStatus), userChoice))
+            while(!isInputOk || !Enum.IsDefined(typeof(GarageVehicleCard.eVehicleStatus), userChoice))
             {
                 Console.WriteLine(Messages.k_IncorrectInput);
                 userStrInput = Console.ReadLine();
@@ -253,6 +263,35 @@ k_MenuOption5, k_MenuOption6, k_MenuOption7, ' ', k_MenuOption0, new String('-',
             }
 
             o_VehicleStatus = userChoice;
+        }
+
+        internal static void VehicleLicencesInGarageMenu(out GarageInterface.eShowLicenceMenu o_ChosenOption)
+        {
+            string userStrInput;
+            bool isInputOk = false;
+            GarageInterface.eShowLicenceMenu userChoice;
+
+            Console.WriteLine(Messages.k_ShowLicencesOfCarsMenu);
+            userStrInput = Console.ReadLine();
+
+            isInputOk = GarageInterface.eShowLicenceMenu.TryParse(userStrInput, out userChoice);
+            while(!isInputOk || !Enum.IsDefined(typeof(GarageInterface.eShowLicenceMenu), userChoice))
+            {
+                Console.WriteLine(Messages.k_IncorrectInput);
+                userStrInput = Console.ReadLine();
+                isInputOk = GarageInterface.eShowLicenceMenu.TryParse(userStrInput, out userChoice);
+            }
+
+            o_ChosenOption = userChoice;
+        }
+
+        internal static void ShowVehicleLicences(List<string> i_VehicleLicences) 
+        {
+            Console.WriteLine(@"{0}: ", Messages.k_Found);
+            foreach(string licences in i_VehicleLicences)
+            {
+                Console.WriteLine(licences);
+            }
         }
     }
 }

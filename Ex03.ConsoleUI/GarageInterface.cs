@@ -1,9 +1,6 @@
 ﻿using Ex03.GarageLogic;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static Ex03.GarageLogic.GarageVehicleCard;
 
 namespace Ex03.ConsoleUI
@@ -21,6 +18,15 @@ namespace Ex03.ConsoleUI
             ChargeUpVehicle,
             FullShowCar,
             ChangeCarLoadSetting
+        }
+
+        internal enum eShowLicenceMenu
+        {
+            Exit,
+            All,
+            Repair,
+            Repaired,
+            Paid
         }
 
         private GarageData m_Garage;
@@ -53,6 +59,12 @@ namespace Ex03.ConsoleUI
                 case eMenueOptions.EnterNewCar:
                     EnterNewVehicle();
                     break;
+                case eMenueOptions.ShowLicensePlates:
+                    ShowVehicleLicences();
+                    break;
+                case eMenueOptions.ChangeCarState:
+                    ChangeCardStatus();
+                    break;
                 case eMenueOptions.ChangeCarLoadSetting:
                     UI.ChangeWheelsSetupMenu();
                     break;
@@ -63,13 +75,44 @@ namespace Ex03.ConsoleUI
             }
         }
 
+        internal void ShowVehicleLicences()
+        {
+            eShowLicenceMenu userChoice;
+            List<string> licences;
+
+            UI.VehicleLicencesInGarageMenu(out userChoice);
+            switch (userChoice)
+            {
+                case eShowLicenceMenu.All:
+                    licences = GarageData.GetLicences(m_Garage.ListOfVehicles);
+                    break;
+                case eShowLicenceMenu.Repaired:
+                    licences = m_Garage.FindAllMatchLicences(GarageVehicleCard.eVehicleStatus.Repaired);
+                    break;
+                case eShowLicenceMenu.Repair:
+                    licences = m_Garage.FindAllMatchLicences(GarageVehicleCard.eVehicleStatus.Repair);
+                    break;
+                case eShowLicenceMenu.Paid:
+                    licences = m_Garage.FindAllMatchLicences(GarageVehicleCard.eVehicleStatus.Paid);
+                    break;
+                default:
+                    licences = null;
+                    break;
+            }
+
+            if(licences != null)
+            {
+
+            }
+        }
+
         internal void EnterNewVehicle()
         {
             string recivedLicense = UI.GetLicensePlate();
             List<string> recivedAttributes;
             GarageVehicleCard newCard;
             VehicleFactory.eVehicleOptions vehicleChosen;
-            GarageVehicleCard.eVehicleStatus statusChosen;
+            eVehicleStatus statusChosen;
             Vehicle newVehicle;
             bool checkSuccess;
 
@@ -102,6 +145,23 @@ namespace Ex03.ConsoleUI
 
                 UI.GetVehicleStatus(out statusChosen);
                 newCard.VehicleStatus = statusChosen;
+            }
+        }
+
+        internal void ChangeCardStatus()
+        {
+            string recivedLicense = UI.GetLicensePlate();
+            GarageVehicleCard foundCard = m_Garage.FindVehicle(recivedLicense);
+            eVehicleStatus statusChosen;
+
+            if (foundCard != null)
+            {
+                UI.GetVehicleStatus(out statusChosen);
+                foundCard.VehicleStatus = statusChosen;
+            }
+            else
+            {
+                UI.PrintExceptions(new Exception("Card Could not be found!"));
             }
         }
     }
