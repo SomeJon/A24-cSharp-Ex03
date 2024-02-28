@@ -35,16 +35,41 @@ namespace Ex03.ConsoleUI
             //}
         }
 
-        internal eMenueOptions MenuRun(eMenueOptions i_MenuOption)
+        internal void MenuRun(out bool o_StillRunning)
         {
-            switch (i_MenuOption) 
+            eMenueOptions userChoice;
+            
+            o_StillRunning = true;
+            UI.Menu(out userChoice);
+
+            switch (userChoice) 
             {
-                case eMenueOptions.FullShowCar:
-                    FullVehicleShow();
+                case eMenueOptions.EnterNewCar:
+                    EnterNewVehicle();
+                    break;
+                default:
+                    o_StillRunning = false;
                     break;
 
             }
-            return eMenueOptions.FullShowCar;
+        }
+
+        internal void EnterNewVehicle()
+        {
+            string recivedLicense = UI.GetLicensePlate();
+            List<string> recivedAttributes;
+            GarageVehicleCard newCard;
+
+            if (m_Garage.isVehicleInGarage(recivedLicense))
+            {
+                UI.CarInGarageMessage();
+            }
+            else
+            {
+                newCard = new GarageVehicleCard();
+                recivedAttributes = UI.GetAttributes(newCard.GetAttributesList(), "Card entry");
+                newCard.EnterAtributes(recivedAttributes);
+            }
         }
     }
 }
