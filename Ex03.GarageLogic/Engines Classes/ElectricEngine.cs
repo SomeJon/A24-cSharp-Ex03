@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Ex03.GarageLogic
 {
-    internal class ElectricEngine : Engine
+    public class ElectricEngine : Engine
     {
 
         private readonly float r_BatteryCapacityHours;
@@ -32,7 +32,7 @@ namespace Ex03.GarageLogic
             r_BatteryCapacityHours = i_BatteryCapacityHours;
         }
 
-        internal void ChargeBattery(float i_amountToCharge)
+        public void ChargeBattery(float i_amountToCharge)
         {
             try
             {

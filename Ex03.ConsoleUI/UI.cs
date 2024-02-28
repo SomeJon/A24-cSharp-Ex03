@@ -42,6 +42,8 @@ namespace Ex03.ConsoleUI
             internal const string k_Status = "Status";
             internal const string k_GetStatus = "Please choose a number representing status of vehicle:";
             internal const string k_Found = "Found";
+            internal const string k_AddingFuelType = "Please chose a fuel type from list to fill:";
+            internal const string k_AddingActionFloat = "Please chose an amount to {0}:";
 
             internal const string k_ShowLicencesOfCarsMenu =
 @"Please choose a number representing a choice:
@@ -291,6 +293,41 @@ k_MenuOption5, k_MenuOption6, k_MenuOption7, ' ', k_MenuOption0, new String('-',
             foreach(string licences in i_VehicleLicences)
             {
                 Console.WriteLine(licences);
+            }
+        }
+
+        internal static void GetFueFillType(out FuelEngine.eFuelType i_TypeOfFuel)
+        {
+            Console.WriteLine(Messages.k_AddingFuelType);
+            string userStrInput;
+            bool isInputOk = false;
+            FuelEngine.eFuelType userChoice;
+
+            Console.WriteLine(Messages.k_ShowLicencesOfCarsMenu);
+            userStrInput = Console.ReadLine();
+
+            isInputOk = FuelEngine.eFuelType.TryParse(userStrInput, out userChoice);
+            while (!isInputOk || !Enum.IsDefined(typeof(FuelEngine.eFuelType), userChoice))
+            {
+                Console.WriteLine(Messages.k_IncorrectInput);
+                userStrInput = Console.ReadLine();
+                isInputOk = FuelEngine.eFuelType.TryParse(userStrInput, out userChoice);
+            }
+
+            i_TypeOfFuel = userChoice;
+        }
+
+        internal static void GetFloatForAnAction(string i_ActionName, out float i_AmountToFill)
+        {
+            string userStrInput;
+
+            Console.WriteLine(Messages.k_AddingActionFloat, i_ActionName);
+            userStrInput = Console.ReadLine();
+
+            while(!float.TryParse(userStrInput, out i_AmountToFill))
+            {
+                Console.WriteLine(Messages.k_IncorrectInput);
+                userStrInput = Console.ReadLine();
             }
         }
     }

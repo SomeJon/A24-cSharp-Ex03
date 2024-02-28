@@ -40,11 +40,16 @@ namespace Ex03.ConsoleUI
         private void FullVehicleShow()
         {
             string licensePlate = UI.GetLicensePlate();
+            GarageVehicleCard foundCard = m_Garage.FindVehicle(licensePlate);
 
-            //if(!m_Garage.ShowVehicleFullDetails(licensePlate))
-            //{
-            //    Console.WriteLine(UI.Messages.k_VehicleNotInGarage);
-            //}
+            if(foundCard != null)
+            {
+                UI.PrintAllInfoOfCard(foundCard);
+            }
+            else
+            {
+                UI.PrintExceptions(new Exception("Card Could not be found!"));
+            }
         }
 
         internal void MenuRun(out bool o_StillRunning)
@@ -64,6 +69,18 @@ namespace Ex03.ConsoleUI
                     break;
                 case eMenueOptions.ChangeCarState:
                     ChangeCardStatus();
+                    break;
+                case eMenueOptions.InflateCarWheels:
+                    InflateCarWheels();
+                    break;
+                case eMenueOptions.FuelUpVehicle:
+                    FillVehicleFuel();
+                    break;
+                case eMenueOptions.ChargeUpVehicle:
+                    ChargeElectricVehicle();
+                    break;
+                case eMenueOptions.FullShowCar:
+                    FullVehicleShow();
                     break;
                 case eMenueOptions.ChangeCarLoadSetting:
                     UI.ChangeWheelsSetupMenu();
@@ -158,6 +175,97 @@ namespace Ex03.ConsoleUI
             {
                 UI.GetVehicleStatus(out statusChosen);
                 foundCard.VehicleStatus = statusChosen;
+            }
+            else
+            {
+                UI.PrintExceptions(new Exception("Card Could not be found!"));
+            }
+        }
+
+        internal void InflateCarWheels() 
+        {
+            string recivedLicense = UI.GetLicensePlate();
+            GarageVehicleCard foundCard = m_Garage.FindVehicle(recivedLicense);
+
+            if (foundCard != null)
+            {
+                try
+                {
+                    foundCard.CardVehicle.FillWheelsToMax();
+                }
+                catch(Exception i_Exception)
+                {
+                    UI.PrintExceptions(i_Exception);
+                }
+            }
+            else
+            {
+                UI.PrintExceptions(new Exception("Card Could not be found!"));
+            }
+        }
+
+        internal void FillVehicleFuel()
+        {
+            string recivedLicense = UI.GetLicensePlate();
+            GarageVehicleCard foundCard = m_Garage.FindVehicle(recivedLicense);
+            FuelEngine engine;
+            FuelEngine.eFuelType fuelType;
+            float amountToFill;
+
+            if (foundCard != null)
+            {
+                try
+                {
+                    engine = foundCard.CardVehicle.Engine as FuelEngine;
+                    if(engine != null)
+                    {
+                        UI.GetFueFillType(out fuelType);
+                        UI.GetFloatForAnAction("fill a fuel engine", out amountToFill);
+                        engine.FillFuelTank(amountToFill, fuelType);
+                    }
+                    else
+                    {
+                        UI.PrintExceptions(new ArgumentException("Chosen vehicle does not run on fuel!"));
+                    }
+                }
+                catch (Exception i_Exception)
+                {
+                    UI.PrintExceptions(i_Exception);
+                }
+            }
+            else
+            {
+                UI.PrintExceptions(new Exception("Card Could not be found!"));
+            }
+        }
+
+        internal void ChargeElectricVehicle()
+        {
+            string recivedLicense = UI.GetLicensePlate();
+            GarageVehicleCard foundCard = m_Garage.FindVehicle(recivedLicense);
+            ElectricEngine engine;
+            float amountToFill;
+
+            if (foundCard != null)
+            {
+                try
+                {
+                    engine = foundCard.CardVehicle.Engine as ElectricEngine;
+                    if (engine != null)
+                    {
+                        UI.GetFloatForAnAction("charge battery(value in minutes)", out amountToFill);
+                        amountToFill = amountToFill / 60;
+                        engine.ChargeBattery(amountToFill);
+                    }
+                    else
+                    {
+                        UI.PrintExceptions(new ArgumentException("Chosen vehicle does not run on fuel!"));
+                    }
+                }
+                catch (Exception i_Exception)
+                {
+                    UI.PrintExceptions(i_Exception);
+                }
             }
             else
             {
