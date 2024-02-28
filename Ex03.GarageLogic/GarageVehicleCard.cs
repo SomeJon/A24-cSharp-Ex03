@@ -9,7 +9,7 @@ namespace Ex03.GarageLogic
 {
     public class GarageVehicleCard
     {
-        private enum eVehicleStatus
+        public enum eVehicleStatus
         {
             Repair,
             Repaired,
@@ -27,12 +27,18 @@ namespace Ex03.GarageLogic
             set { m_CardVehicle = value; }
         }
 
-        public List<string> GetAttributesList()
+        public eVehicleStatus VehicleStatus
+        {
+            get { return m_VehicleStatus; }
+            set { m_VehicleStatus = value; }
+        }
+
+        public virtual List<string> GetAttributesList()
         {
             return new List<string> { "Owner's name", "Owner's phone number"};
         }
 
-        public void EnterAtributes(List<string> i_Atributes)
+        public virtual void EnterAtributes(List<string> i_Atributes)
         {
             m_OwnerName = i_Atributes[0];
             m_OwnerPhoneNumber = i_Atributes[1];

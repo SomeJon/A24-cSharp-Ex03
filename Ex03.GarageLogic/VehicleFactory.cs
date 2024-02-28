@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
-    internal class VehicleFactory
+    public class VehicleFactory
     {
-        internal enum eVehicleOptions
+        public enum eVehicleOptions
         {
             FuelCar = 1,
             ElectricCar,
@@ -17,7 +17,10 @@ namespace Ex03.GarageLogic
             Truck
         }
 
-        internal static Vehicle CreateVehicle(eVehicleOptions i_VehicleChoice, string i_LicensePlate)
+        public static List<string>  s_VehicleOptions = new List<string> 
+            { "Normal Car", "Electric Car", "Normal Motorcycle", "ElectricMotorcycle", "Truck"};
+
+        public static Vehicle CreateVehicle(eVehicleOptions i_VehicleChoice, string i_LicensePlate)
         {
             Vehicle newVehicleBase;
 

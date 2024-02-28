@@ -10,9 +10,9 @@ namespace Ex03.GarageLogic
         private readonly float r_BatteryCapacityHours;
         private float m_BatteryLevel = 0;
 
-        public float BatterLevel
+        public float BatteryLevel
         {
-            get { return r_BatteryCapacityHours; }
+            get { return m_BatteryLevel; }
             private set
             {
                 try
@@ -36,7 +36,7 @@ namespace Ex03.GarageLogic
         {
             try
             {
-                BatterLevel += i_amountToCharge;
+                BatteryLevel += i_amountToCharge;
             }
             catch(ValueOutOfRangeException io_FailedChargingBattery) 
             {
@@ -44,9 +44,38 @@ namespace Ex03.GarageLogic
             }
         }
 
-        //internal override List<string> GetAttributesList()
-        //{
-        //}
+        internal override List<string> GetAttributesList()
+        {
+            string attributeCharge = string.Format(@"Amount of charge of battery (max: {0})", r_BatteryCapacityHours);
+            return new List<string> { attributeCharge };
+        }
+
+        internal override void EnterAtributes(List<string> i_Atributes)
+        {
+            const int numOfExpectedAttributes = 1;
+            float amountToCharge;
+
+            try
+            {
+                if(!float.TryParse(i_Atributes[0], out amountToCharge))
+                {
+                    throw new FormatException("Wrong format! expected battery charge to be a float!");
+                }
+                ChargeBattery(amountToCharge);
+            }
+            catch(Exception i_Exception) 
+            { 
+                throw i_Exception;
+            }
+
+            i_Atributes.RemoveRange(0, numOfExpectedAttributes);
+        }
+
+        public override List<string> GetAttributeValuesAsStringList()
+        {
+            string retValue = string.Format(@"{0}, {1:P2} of capacity", m_BatteryLevel, CurrentPowerPercentage);
+            return new List<string> { retValue };
+        }
     }
   
 }

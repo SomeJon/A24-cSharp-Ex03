@@ -18,13 +18,18 @@ namespace Ex03.ConsoleUI
             InflateCarWheels,
             FuelUpVehicle,
             ChargeUpVehicle,
-            FullShowCar
+            FullShowCar,
+            ChangeCarLoadSetting
         }
 
         private GarageData m_Garage;
         internal const int k_NumOfFirstMenuOption = 0;
         internal const int k_NumOfLastMenuOption = 7;
 
+        public GarageInterface()
+        {
+            m_Garage = new GarageData();
+        }
         private void FullVehicleShow()
         {
             string licensePlate = UI.GetLicensePlate();
@@ -47,6 +52,9 @@ namespace Ex03.ConsoleUI
                 case eMenueOptions.EnterNewCar:
                     EnterNewVehicle();
                     break;
+                case eMenueOptions.ChangeCarLoadSetting:
+                    UI.ChangeWheelsSetupMenu();
+                    break;
                 default:
                     o_StillRunning = false;
                     break;
@@ -59,6 +67,9 @@ namespace Ex03.ConsoleUI
             string recivedLicense = UI.GetLicensePlate();
             List<string> recivedAttributes;
             GarageVehicleCard newCard;
+            VehicleFactory.eVehicleOptions vehicleChosen;
+            Vehicle newVehicle;
+            bool checkSuccess;
 
             if (m_Garage.isVehicleInGarage(recivedLicense))
             {
@@ -67,8 +78,29 @@ namespace Ex03.ConsoleUI
             else
             {
                 newCard = new GarageVehicleCard();
-                recivedAttributes = UI.GetAttributes(newCard.GetAttributesList(), "Card entry");
+                recivedAttributes = UI.GetAttributes(newCard.GetAttributesList(), "Card Entry");
                 newCard.EnterAtributes(recivedAttributes);
+                vehicleChosen = UI.GetVehicleChoice();
+                newVehicle = VehicleFactory.CreateVehicle(vehicleChosen, recivedLicense);
+                newCard.CardVehicle = newVehicle;
+                checkSuccess = false;
+                while (!checkSuccess)
+                {
+                    try
+                    {
+                        recivedAttributes = UI.GetAttributes(newVehicle.GetAttributesList(), newVehicle.GetType().Name);
+                        newVehicle.EnterAtributes(recivedAttributes);
+                        checkSuccess = true;
+                    }
+                    catch (Exception i_Exception) 
+                    {
+                        UI.PrintExceptions(i_Exception);
+                    }
+                }
+
+                recivedAttributes = newVehicle.GetAttributeValuesAsStringList();
+
+                Console.WriteLine(recivedAttributes.ToString());
             }
         }
     }

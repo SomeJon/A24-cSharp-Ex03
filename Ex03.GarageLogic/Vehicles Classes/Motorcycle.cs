@@ -17,22 +17,70 @@ namespace Ex03.GarageLogic
             B2
         }
 
-        internal const int k_MotorcycleWheelNum = 2;
-        internal const int k_MotorcycleMaxAirPressure = 29;
-        private eLicenseType r_LicenseType;
+        private const int k_MotorcycleWheelNum = 2;
+        private const int k_MotorcycleMaxAirPressure = 29;
+        private eLicenseType m_LicenseType;
         private int m_EngineVolume;
 
-        internal Motorcycle(string i_LicensePlate, Engine i_Engine): base(i_LicensePlate, i_Engine) { }
+        internal Motorcycle(string i_LicensePlate, Engine i_Engine): base(i_LicensePlate, i_Engine) 
+        {
+            for (int i = 0; i < k_MotorcycleWheelNum; i++)
+            {
+                m_Wheels.Add(new Wheel(k_MotorcycleMaxAirPressure));
+            }
+        }
 
-        
-        //internal override List<string> GetAttributesList()
-        //{
-            
-        //}
 
-        //public override string ToString()
-        //{
+        public override List<string> GetAttributesList()
+        {
+            List<string> attributeBase = base.GetAttributesList();
+            List<string> attributeNeeded = new List<string> { "License Type", "Engine Volume" };
 
-        //}
+            attributeBase.AddRange(attributeNeeded);
+            return attributeBase;
+        }
+
+        public override void EnterAtributes(List<string> i_Atributes)
+        {
+            const int numOfExpectedAttributes = 2;
+            bool isInputOk;
+
+            try
+            {
+                base.EnterAtributes(i_Atributes);
+                isInputOk = eLicenseType.TryParse(i_Atributes[0], out m_LicenseType);
+                if (!isInputOk || !Enum.IsDefined(typeof(eLicenseType), m_LicenseType))
+                {
+                    throw new FormatException("Wrong format! Expected a defined License Type!");
+
+                }
+                if (!int.TryParse(i_Atributes[1], out m_EngineVolume))
+                {
+                    throw new FormatException("Wrong format! Expected an int");
+                }
+            }
+            catch (Exception i_Exception)
+            {
+                throw i_Exception;
+            }
+
+            i_Atributes.RemoveRange(0, numOfExpectedAttributes);
+        }
+
+        public override List<string> GetAttributeValuesAsStringList()
+        {
+            List<string> attributeBase = base.GetAttributeValuesAsStringList();
+            List<string> attributeNeeded = new List<string> { m_LicenseType.ToString(), m_EngineVolume.ToString() };
+
+
+            foreach (Wheel wheel in m_Wheels)
+            {
+                attributeBase.AddRange(wheel.GetAttributeValuesAsStringList());
+            }
+
+
+            attributeBase.AddRange(attributeNeeded);
+            return attributeBase;
+        }
     }
 }

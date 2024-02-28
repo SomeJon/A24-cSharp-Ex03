@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace Ex03.GarageLogic
 {
-    internal class FuelEngine : Engine
+    public class FuelEngine : Engine
     {
-        internal enum eFuelType
+        public enum eFuelType
         {
             Octan95,
             Octan96,
@@ -41,10 +41,15 @@ namespace Ex03.GarageLogic
             r_TankCapacityLiters = i_TankCapacityLiters;
         }
 
-        internal void FillFuelTank(float i_AmountOfFuel)
+        public void FillFuelTank(float i_AmountOfFuel, eFuelType i_EnteredFuelType)
         {
             try
             {
+                if(i_EnteredFuelType != r_FuelType)
+                {
+                    throw new ArgumentException("Entered wrong fuel type!");
+                }
+
                 CurrentFuel += i_AmountOfFuel;
             }
             catch (ValueOutOfRangeException io_FailedFillingFuel)
@@ -53,8 +58,37 @@ namespace Ex03.GarageLogic
             }
         }
 
-        //public override string ToString()
-        //{
-        //}
+        internal override List<string> GetAttributesList()
+        {
+            string attributeFuel = string.Format(@"Amount of fuel, expected fuel to match engine (max: {0})", r_TankCapacityLiters);
+            return new List<string> { attributeFuel };
+        }
+
+        internal override void EnterAtributes(List<string> i_Atributes)
+        {
+            const int numOfExpectedAttributes = 1;
+            float amountToFill;
+
+            try
+            {
+                if (!float.TryParse(i_Atributes[0], out amountToFill))
+                {
+                    throw new FormatException("Wrong format! expected battery charge to be a float!");
+                }
+                FillFuelTank(amountToFill, r_FuelType);
+            }
+            catch (Exception i_Exception)
+            {
+                throw i_Exception;
+            }
+
+            i_Atributes.RemoveRange(0, numOfExpectedAttributes);
+        }
+
+        public override List<string> GetAttributeValuesAsStringList()
+        {
+            string retValue = string.Format(@"{0} of type {1}, {2:P2} of capacity", m_CurrentFuel, r_FuelType, CurrentPowerPercentage);
+            return new List<string> { retValue };
+        }
     }
 }

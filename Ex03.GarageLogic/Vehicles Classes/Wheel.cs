@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using static Ex03.GarageLogic.FuelEngine;
 
 
 namespace Ex03.GarageLogic
@@ -9,22 +10,13 @@ namespace Ex03.GarageLogic
         private string m_Manufacturer;
         private float m_AirPressure = 0;
         private readonly float r_MaxAirPressure;
+        public const int numOfExpectedAttributesWheels = 2;
 
         public string Manufacturer
         {
             get{ return (string)m_Manufacturer.Clone(); }
             
-            set
-            {
-                try
-                {
-                    m_Manufacturer = value;
-                }
-                catch(Exception ex)
-                {
-                    throw ex;
-                }
-            }
+            set{ m_Manufacturer = value; }
         }
 
         public float AirPressure
@@ -62,14 +54,41 @@ namespace Ex03.GarageLogic
             }
         }
 
-        //internal List<string> GetAttributesList()
-        //{
-            //todo
-        //}
+        internal virtual List<string> GetAttributesList(string i_WheelName)
+        {
+            string attributeManufacturer = string.Format(@"{0}: Manufacturer", i_WheelName);
+            string attributeAirpressure = string.Format(@"{0}: Air pressure to fill (max: {1})", i_WheelName, r_MaxAirPressure);
 
-        //public override string ToString()
-        //{
-            //todo
-        //}
+            return new List<string> { attributeManufacturer, attributeAirpressure };
+        }
+
+        internal virtual void EnterAtributes(List<string> i_Atributes, bool i_DeleteFromListAfterUse)
+        {
+            float amountToFill;
+
+            try
+            {
+                Manufacturer = i_Atributes[0];
+                if (!float.TryParse(i_Atributes[1], out amountToFill))
+                {
+                    throw new FormatException("Wrong format! expected Air Pressure to fill to be entered as a float!");
+                }
+                FillAir(amountToFill);
+            }
+            catch (Exception i_Exception)
+            {
+                throw i_Exception;
+            }
+
+            if (i_DeleteFromListAfterUse)
+            {
+                i_Atributes.RemoveRange(0, numOfExpectedAttributesWheels);
+            }
+        }
+
+        internal virtual  List<string> GetAttributeValuesAsStringList()
+        {
+            return new List<string> { m_Manufacturer, m_AirPressure.ToString() };
+        }
     }
 }
