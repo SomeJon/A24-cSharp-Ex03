@@ -50,7 +50,7 @@ namespace Ex03.GarageLogic
                 m_Color = turnStringToEColor(i_Atributes[0]);
                 if(!int.TryParse(i_Atributes[1], out m_NumOfDoors))
                 {
-                    throw new FormatException("Wrong format! Expected an int");
+                    throw new FormatException("Car-Doors: Wrong format! Expected an int");
                 }
             }
             catch (Exception i_Exception)
@@ -99,7 +99,7 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                throw new FormatException("Wrong format! Expected a defined color!");
+                throw new FormatException("Car-Color: Wrong format! Expected a defined color!");
             }
 
             return retColor;

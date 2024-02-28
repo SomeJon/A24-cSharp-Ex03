@@ -71,7 +71,7 @@ namespace Ex03.GarageLogic
                 Manufacturer = i_Atributes[0];
                 if (!float.TryParse(i_Atributes[1], out amountToFill))
                 {
-                    throw new FormatException("Wrong format! expected Air Pressure to fill to be entered as a float!");
+                    throw new FormatException("Wheels-Amount of air to fill: Wrong format! expected Air Pressure to fill to be entered as a float!");
                 }
                 FillAir(amountToFill);
             }

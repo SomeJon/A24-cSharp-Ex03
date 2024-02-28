@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Ex03.ConsoleUI
@@ -36,6 +37,11 @@ namespace Ex03.ConsoleUI
             internal const string k_InputChangeYesOrNo = "Would you like to change it?(yes/no): ";
             internal const string k_Yes = "Yes";
             internal const string k_No = "No";
+            internal const string k_Electric = "Electric ";
+            internal const string k_LicensePlate = "License Plate";
+            internal const string k_Status = "Status";
+
+            internal const string k_GetStatus = "Please choose a number representing status of vehicle:";
 
             internal static string k_MenuOptions = string.Format(
 @"{0}Menu{0}
@@ -181,6 +187,72 @@ k_MenuOption5, k_MenuOption6, k_MenuOption7, ' ', k_MenuOption0, new String('-',
             Console.WriteLine(i_Exception.Message);
         }
 
+        internal static void PrintAllInfoOfCard(GarageVehicleCard i_CardToPrintInfo)
+        {
+            List<string> attributeNames = i_CardToPrintInfo.GetAttributesList();
+            List<string> attributeValues = i_CardToPrintInfo.GetAttributeValuesAsStringList();
 
+            Console.WriteLine(@"{0}: {1}", Messages.k_Status, i_CardToPrintInfo.VehicleStatus);
+            for (int i = 0; i < attributeNames.Count; i++)
+            {
+                Console.WriteLine(@"{0}: {1}", attributeNames.ElementAt(i), attributeValues.ElementAt(i));
+            }
+        }
+
+        internal static void PrintAllInfoOfVehicle(Vehicle i_VehicleToPrintInfo)
+        {
+            List<string> attributeNames;
+            List<string> attributeValues;
+
+            if (i_VehicleToPrintInfo.IsElectric())
+            {
+                Console.Write(Messages.k_Electric);
+            }
+
+            Console.WriteLine(i_VehicleToPrintInfo.GetType().Name);
+            if (Vehicle.LoadAllWheelsAtOnce == true)
+            {
+                Vehicle.SwitchLoadAllWheelsAtOnce();
+                attributeNames = i_VehicleToPrintInfo.GetAttributesList();
+                Vehicle.SwitchLoadAllWheelsAtOnce();
+            }
+            else
+            {
+                attributeNames = i_VehicleToPrintInfo.GetAttributesList();
+            }
+
+            attributeValues = i_VehicleToPrintInfo.GetAttributeValuesAsStringList();
+            Console.WriteLine(@"{0}: {1}", Messages.k_LicensePlate, i_VehicleToPrintInfo.LicensePlate);
+            for(int i = 0; i < attributeNames.Count; i++)
+            {
+                Console.WriteLine(@"{0}: {1}", attributeNames.ElementAt(i), attributeValues.ElementAt(i));
+            }
+        }
+
+        internal static void GetVehicleStatus(out GarageVehicleCard.eVehicleStatus o_VehicleStatus)
+        {
+            int count = 1;
+            string userStrInput;
+            bool isInputOk;
+            GarageVehicleCard.eVehicleStatus userChoice;
+
+            Console.WriteLine(Messages.k_GetStatus);
+            foreach (string enumName in Enum.GetNames(typeof(GarageVehicleCard.eVehicleStatus)))
+            {
+                Console.WriteLine(@"{0}) {1}", count, enumName);
+                count++;
+            }
+
+            userStrInput = Console.ReadLine();
+            isInputOk = GarageVehicleCard.eVehicleStatus.TryParse(userStrInput, out userChoice);
+            while (!isInputOk || !Enum.IsDefined(typeof(GarageVehicleCard.eVehicleStatus), userChoice))
+            {
+                Console.WriteLine(Messages.k_IncorrectInput);
+                userStrInput = Console.ReadLine();
+                isInputOk = GarageVehicleCard.eVehicleStatus.TryParse(userStrInput, out userChoice);
+            }
+
+            o_VehicleStatus = userChoice;
+        }
     }
 }

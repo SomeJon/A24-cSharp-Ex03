@@ -87,8 +87,8 @@ namespace Ex03.GarageLogic
             const float k_TruckTankCapacityLiters = 110f;
             const FuelEngine.eFuelType k_TruckFuelType = FuelEngine.eFuelType.Soler;
 
-            Engine motorcycleEngine = new FuelEngine(k_TruckFuelType, k_TruckTankCapacityLiters);
-            return new Motorcycle(i_LicensePlate, motorcycleEngine);
+            Engine truckEngine = new FuelEngine(k_TruckFuelType, k_TruckTankCapacityLiters);
+            return new Truck(i_LicensePlate, truckEngine);
         }
     }
 }

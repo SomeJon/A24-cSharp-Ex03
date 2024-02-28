@@ -31,9 +31,14 @@ namespace Ex03.GarageLogic
             m_Engine        = i_VehicleEngine;
         }
 
-        internal string LicensePlate
+        public string LicensePlate
         {
             get { return r_LicensePlate; }
+        }
+
+        public bool IsElectric()
+        {
+            return m_Engine is ElectricEngine;
         }
 
         public override bool Equals(object i_Compare)
