@@ -15,14 +15,13 @@ namespace Ex03.GarageLogic
         protected Engine m_Engine;
         private static bool s_LoadAllWheelsAtOnce = true;
 
+        public Engine Engine 
+        { 
+            get { return m_Engine; } 
+        }
         public static bool LoadAllWheelsAtOnce
         {
             get { return s_LoadAllWheelsAtOnce; }
-        }
-
-        public static void SwitchLoadAllWheelsAtOnce()
-        {
-            s_LoadAllWheelsAtOnce = !s_LoadAllWheelsAtOnce;
         }
 
         internal Vehicle(string i_LicensePlate, Engine i_VehicleEngine)
@@ -39,6 +38,19 @@ namespace Ex03.GarageLogic
         public bool IsElectric()
         {
             return m_Engine is ElectricEngine;
+        }
+
+        public void FillWheelsToMax()
+        {
+            foreach(Wheel wheel in m_Wheels)
+            {
+                wheel.FillAirToMax();
+            }
+        }
+
+        public static void SwitchLoadAllWheelsAtOnce()
+        {
+            s_LoadAllWheelsAtOnce = !s_LoadAllWheelsAtOnce;
         }
 
         public override bool Equals(object i_Compare)

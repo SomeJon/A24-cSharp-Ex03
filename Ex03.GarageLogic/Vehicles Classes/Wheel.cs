@@ -54,6 +54,11 @@ namespace Ex03.GarageLogic
             }
         }
 
+        internal void FillAirToMax()
+        {
+            m_AirPressure = r_MaxAirPressure;
+        }
+
         internal virtual List<string> GetAttributesList(string i_WheelName)
         {
             string attributeManufacturer = string.Format(@"{0}: Manufacturer", i_WheelName);
