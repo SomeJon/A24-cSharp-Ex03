@@ -26,7 +26,7 @@ namespace Ex03.GarageLogic
         public override List<string> GetAttributesList()
         {
             List<string> attributeBase = base.GetAttributesList();
-            List<string> attributeNeeded = new List<string> { "Hazardous Material(0 for no, 1 for yes)", "Cargo Volume" };
+            List<string> attributeNeeded = new List<string> { "Hazardous Material(no/yes)", "Cargo Volume" };
 
             attributeBase.AddRange(attributeNeeded);
             return attributeBase;
@@ -39,14 +39,12 @@ namespace Ex03.GarageLogic
             try
             {
                 base.EnterAtributes(i_Atributes);
+                m_HazardousMaterial = turnStringbool(i_Atributes[0]);
                 if (!bool.TryParse(i_Atributes[0], out m_HazardousMaterial))
-                {
-                    throw new FormatException("Wrong format! Expected a defined 0 or 1!");
-
-                }
+                
                 if (!float.TryParse(i_Atributes[1], out m_CargoVolume))
                 {
-                    throw new FormatException("Wrong format! Expected a float");
+                    throw new FormatException("Truck-Cargo Volume: Wrong format! Expected a float");
                 }
             }
             catch (Exception i_Exception)
@@ -71,6 +69,26 @@ namespace Ex03.GarageLogic
 
             attributeBase.AddRange(attributeNeeded);
             return attributeBase;
+        }
+
+        private bool turnStringbool(string i_WantedBool)
+        {
+            bool retBool;
+
+            if (String.Equals(i_WantedBool, "yes", StringComparison.OrdinalIgnoreCase))
+            {
+                retBool = true;
+            }
+            else if (String.Equals(i_WantedBool, "no", StringComparison.OrdinalIgnoreCase))
+            {
+                retBool = false;
+            }
+            else
+            {
+                throw new FormatException("Truck-Hazardous Material: Wrong format! Expected no/yes!");
+            }
+
+            return retBool;
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Ex03.GarageLogic.GarageVehicleCard;
 
 namespace Ex03.ConsoleUI
 {
@@ -68,6 +69,7 @@ namespace Ex03.ConsoleUI
             List<string> recivedAttributes;
             GarageVehicleCard newCard;
             VehicleFactory.eVehicleOptions vehicleChosen;
+            GarageVehicleCard.eVehicleStatus statusChosen;
             Vehicle newVehicle;
             bool checkSuccess;
 
@@ -98,9 +100,8 @@ namespace Ex03.ConsoleUI
                     }
                 }
 
-                recivedAttributes = newVehicle.GetAttributeValuesAsStringList();
-
-                Console.WriteLine(recivedAttributes.ToString());
+                UI.GetVehicleStatus(out statusChosen);
+                newCard.VehicleStatus = statusChosen;
             }
         }
     }

@@ -59,7 +59,7 @@ namespace Ex03.GarageLogic
             {
                 if(!float.TryParse(i_Atributes[0], out amountToCharge))
                 {
-                    throw new FormatException("Wrong format! expected battery charge to be a float!");
+                    throw new FormatException("Electric Engine-Amount To Charge: Wrong format! expected battery charge to be a float!");
                 }
                 ChargeBattery(amountToCharge);
             }

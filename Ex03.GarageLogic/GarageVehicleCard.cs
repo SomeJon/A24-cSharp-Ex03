@@ -11,7 +11,7 @@ namespace Ex03.GarageLogic
     {
         public enum eVehicleStatus
         {
-            Repair,
+            Repair = 1,
             Repaired,
             Paid
         }
@@ -42,6 +42,13 @@ namespace Ex03.GarageLogic
         {
             m_OwnerName = i_Atributes[0];
             m_OwnerPhoneNumber = i_Atributes[1];
+        }
+
+        public virtual List<string> GetAttributeValuesAsStringList()
+        {
+            List<string> retList = new List<string> { m_OwnerName, m_OwnerPhoneNumber };
+
+            return retList;
         }
     }
 }

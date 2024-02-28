@@ -51,12 +51,12 @@ namespace Ex03.GarageLogic
                 isInputOk = eLicenseType.TryParse(i_Atributes[0], out m_LicenseType);
                 if (!isInputOk || !Enum.IsDefined(typeof(eLicenseType), m_LicenseType))
                 {
-                    throw new FormatException("Wrong format! Expected a defined License Type!");
+                    throw new FormatException("Motorcycle-LicenseType: Wrong format! Expected a defined License Type!");
 
                 }
                 if (!int.TryParse(i_Atributes[1], out m_EngineVolume))
                 {
-                    throw new FormatException("Wrong format! Expected an int");
+                    throw new FormatException("Motorcycle-EngineVolume: Wrong format! Expected an int");
                 }
             }
             catch (Exception i_Exception)
