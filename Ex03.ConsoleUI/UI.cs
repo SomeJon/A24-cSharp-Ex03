@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ex03.GarageLogic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,13 +21,21 @@ namespace Ex03.ConsoleUI
             internal const string k_MenuOption5 = "5) Fuel up a fuel electric car";
             internal const string k_MenuOption6 = "6) Charge an electric car";
             internal const string k_MenuOption7 = "7) Show a car's full details";
+            internal const string k_MenuOption8 = "8) Change new vehicle load settings menu";
 
             internal const string k_IncorrectInput = "Entered input in incorrect. please choose again: ";
             internal const string k_GetLicensePlate = "Please enter vehicle's license plate: ";
             internal const string k_VehicleNotInGarage = "There is no matching vehicle in garage.";
-            internal const string k_AttributeListRequest = "Please enter the requsted info of {0]:";
+            internal const string k_AttributeListRequest = @"Please enter the requsted info of {0}:";
             internal const string k_VehicleIsAlreadyInGarage = "Requsted Vehicle is in the garage, changing status to Repair...";
-
+            internal const string k_VehicleChoiceStartDialog = "Please chose a car from list: ";
+            
+            internal const string k_CurrentWheelSetup = "Current setting for new vehicle wheels is - ";
+            internal const string k_OneAtATime = "Enter wheels info one at a time";
+            internal const string k_AllAtOnce = "Enter one wheel info for all";
+            internal const string k_InputChangeYesOrNo = "Would you like to change it?(yes/no): ";
+            internal const string k_Yes = "Yes";
+            internal const string k_No = "No";
 
             internal static string k_MenuOptions = string.Format(
 @"{0}Menu{0}
@@ -37,11 +46,12 @@ namespace Ex03.ConsoleUI
 |{5, -94}|
 |{6, -94}|
 |{7, -94}|
+|{11, -94}|
 |{8, -94}|
 |{9, -94}|
 {10, -94}",
 new String('-', 46), k_MenuOption1, k_MenuOption2, k_MenuOption3, k_MenuOption4,
-k_MenuOption5, k_MenuOption6, k_MenuOption7, ' ', k_MenuOption0, new String('-', 96));
+k_MenuOption5, k_MenuOption6, k_MenuOption7, ' ', k_MenuOption0, new String('-', 96), k_MenuOption8);
         }
 
         internal static void ProgramStart()
@@ -95,6 +105,76 @@ k_MenuOption5, k_MenuOption6, k_MenuOption7, ' ', k_MenuOption0, new String('-',
         internal static void CarInGarageMessage()
         {
             Console.WriteLine(Messages.k_VehicleIsAlreadyInGarage);
+        }
+
+        internal static VehicleFactory.eVehicleOptions GetVehicleChoice()
+        {
+            int choiceToPrint = 1;
+            string userStrInput;
+            VehicleFactory.eVehicleOptions userChoice;
+            bool isInputOk;
+
+            Console.WriteLine(Messages.k_VehicleChoiceStartDialog);
+            foreach (string vehicleName in VehicleFactory.s_VehicleOptions)
+            {
+                Console.WriteLine(@"{0}) {1}", choiceToPrint, vehicleName);
+                choiceToPrint++;
+            }
+            userStrInput = Console.ReadLine();
+
+            isInputOk = VehicleFactory.eVehicleOptions.TryParse(userStrInput, out userChoice);
+            while (!isInputOk || !Enum.IsDefined(typeof(VehicleFactory.eVehicleOptions), userChoice))
+            {
+                Console.WriteLine(Messages.k_IncorrectInput);
+                userStrInput = Console.ReadLine();
+                isInputOk = VehicleFactory.eVehicleOptions.TryParse(userStrInput, out userChoice);
+            }
+
+            return userChoice;
+        }
+
+        internal static void ChangeWheelsSetupMenu()
+        {
+            string userStrInput;
+            bool checkInput = false;
+
+            Console.Write(Messages.k_CurrentWheelSetup);
+            if(Vehicle.LoadAllWheelsAtOnce)
+            {
+                Console.WriteLine(Messages.k_AllAtOnce);
+            }
+            else
+            {
+                Console.WriteLine(Messages.k_OneAtATime);
+            }
+
+            Console.Write(Messages.k_InputChangeYesOrNo);
+            userStrInput = Console.ReadLine();
+            if(String.Equals(userStrInput, Messages.k_Yes, StringComparison.OrdinalIgnoreCase))
+            {
+                checkInput = true;
+                Vehicle.SwitchLoadAllWheelsAtOnce();
+            }
+            else if(String.Equals(userStrInput, Messages.k_No, StringComparison.OrdinalIgnoreCase))
+            {
+                checkInput = true;
+            }
+
+            while(!checkInput)
+            {
+                Console.Write(Messages.k_IncorrectInput);
+                userStrInput = Console.ReadLine();
+                if (String.Equals(userStrInput, Messages.k_Yes, StringComparison.OrdinalIgnoreCase))
+                {
+                    checkInput = true;
+                    Vehicle.SwitchLoadAllWheelsAtOnce();
+                }
+                else if (String.Equals(userStrInput, Messages.k_No, StringComparison.OrdinalIgnoreCase))
+                {
+                    checkInput = true;
+                }
+            }
+
         }
     }
 }

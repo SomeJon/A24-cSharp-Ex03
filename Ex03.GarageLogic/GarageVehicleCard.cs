@@ -9,7 +9,7 @@ namespace Ex03.GarageLogic
 {
     public class GarageVehicleCard
     {
-        private enum eVehicleStatus
+        public enum eVehicleStatus
         {
             Repair,
             Repaired,
@@ -25,6 +25,12 @@ namespace Ex03.GarageLogic
         {
             get { return m_CardVehicle; }
             set { m_CardVehicle = value; }
+        }
+
+        public eVehicleStatus VehicleStatus
+        {
+            get { return m_VehicleStatus; }
+            set { m_VehicleStatus = value; }
         }
 
         public List<string> GetAttributesList()

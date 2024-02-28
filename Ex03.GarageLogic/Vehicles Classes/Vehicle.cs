@@ -13,6 +13,17 @@ namespace Ex03.GarageLogic
         protected string m_Model;
         protected List<Wheel> m_Wheels;
         protected Engine m_Engine;
+        private static bool s_LoadAllWheelsAtOnce = true;
+
+        public static bool LoadAllWheelsAtOnce
+        {
+            get { return s_LoadAllWheelsAtOnce; }
+        }
+
+        public static void SwitchLoadAllWheelsAtOnce()
+        {
+            s_LoadAllWheelsAtOnce = !s_LoadAllWheelsAtOnce;
+        }
 
         internal Vehicle(string i_LicensePlate, Engine i_VehicleEngine)
         {

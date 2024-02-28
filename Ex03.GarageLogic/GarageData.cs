@@ -9,7 +9,7 @@ namespace Ex03.GarageLogic
     public class GarageData
     {
         private const int k_VehicleNotInGarage = -1; 
-        private  List<GarageVehicleCard> m_ListOfVehicles = null;
+        private  List<GarageVehicleCard> m_ListOfVehicles = new List<GarageVehicleCard>();
 
         public void AddCardToList(GarageVehicleCard i_CardToAdd)
         {
@@ -18,17 +18,18 @@ namespace Ex03.GarageLogic
         
         private GarageVehicleCard FindVehicle(string i_LicensePlate)
         {
-            return m_ListOfVehicles.Find(card => (card.CardVehicle == i_LicensePlate));
+            return m_ListOfVehicles.Find(card => (card.CardVehicle == i_LicensePlate)); ;
         }
 
         public bool isVehicleInGarage(string i_LicensePlate)
         {
             bool carIsInGarage = false;
-            GarageVehicleCard VehicleCard = FindVehicle(i_LicensePlate);
 
-            if (VehicleCard != null)
+            GarageVehicleCard VehicleCard = FindVehicle(i_LicensePlate);
+            if (VehicleCard != null) 
             {
                 carIsInGarage = true;
+                VehicleCard.VehicleStatus = GarageVehicleCard.eVehicleStatus.Repair;
             }
 
             return carIsInGarage;
