@@ -34,12 +34,12 @@ namespace Ex03.GarageLogic
 
         public override void EnterAtributes(List<string> i_Atributes)
         {
-            const int numOfExpectedAttributes = 2;
+            const int k_NumOfExpectedAttributes = 2;
 
             try
             {
                 base.EnterAtributes(i_Atributes);
-                m_HazardousMaterial = turnStringbool(i_Atributes[0]);
+                m_HazardousMaterial = turnStringBool(i_Atributes[0]);
                 if (!bool.TryParse(i_Atributes[0], out m_HazardousMaterial))
                 
                 if (!float.TryParse(i_Atributes[1], out m_CargoVolume))
@@ -52,7 +52,7 @@ namespace Ex03.GarageLogic
                 throw i_Exception;
             }
 
-            i_Atributes.RemoveRange(0, numOfExpectedAttributes);
+            i_Atributes.RemoveRange(0, k_NumOfExpectedAttributes);
         }
 
         public override List<string> GetAttributeValuesAsStringList()
@@ -64,7 +64,7 @@ namespace Ex03.GarageLogic
             return attributeBase;
         }
 
-        private bool turnStringbool(string i_WantedBool)
+        private bool turnStringBool(string i_WantedBool)
         {
             bool retBool;
 
