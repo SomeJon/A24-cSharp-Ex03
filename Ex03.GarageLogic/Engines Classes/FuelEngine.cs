@@ -25,7 +25,7 @@ namespace Ex03.GarageLogic
             {
                 try
                 {
-                    FrequantActions.EnterFloatValueInRange(ref m_CurrentFuel, value, "Fuel", r_TankCapacityLiters);
+                    FrequantActions.EnterFloatValueInRange(out m_CurrentFuel, value, "Fuel", r_TankCapacityLiters);
                     CurrentPowerPercentage = m_CurrentFuel / r_TankCapacityLiters;
                 }
                 catch (ValueOutOfRangeException io_PassedFuelCapacity)
@@ -75,7 +75,8 @@ namespace Ex03.GarageLogic
                 {
                     throw new FormatException("Fuel Engine-Amount To Fill: Wrong format! expected battery charge to be a float!");
                 }
-                FillFuelTank(amountToFill, r_FuelType);
+                FrequantActions.EnterFloatValueInRange(out m_CurrentFuel, amountToFill, "Fuel", r_TankCapacityLiters);
+                CurrentPowerPercentage = m_CurrentFuel / r_TankCapacityLiters;
             }
             catch (Exception i_Exception)
             {

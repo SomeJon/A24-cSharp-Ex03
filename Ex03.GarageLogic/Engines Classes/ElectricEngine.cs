@@ -17,7 +17,7 @@ namespace Ex03.GarageLogic
             {
                 try
                 {
-                    FrequantActions.EnterFloatValueInRange(ref m_BatteryLevel, value, "Battery", r_BatteryCapacityHours);
+                    FrequantActions.EnterFloatValueInRange(out m_BatteryLevel, value, "Battery", r_BatteryCapacityHours);
                     CurrentPowerPercentage = m_BatteryLevel / r_BatteryCapacityHours;
                 }
                 catch (ValueOutOfRangeException io_PassedBatteryCapacity)
@@ -63,9 +63,10 @@ namespace Ex03.GarageLogic
                 {
                     throw new FormatException("Electric Engine-Amount To Charge: Wrong format! expected battery charge to be a float!");
                 }
-                ChargeBattery(amountToCharge);
+                FrequantActions.EnterFloatValueInRange(out m_BatteryLevel, amountToCharge, "Battery", r_BatteryCapacityHours);
+                CurrentPowerPercentage = m_BatteryLevel / r_BatteryCapacityHours;
             }
-            catch(Exception i_Exception) 
+            catch (Exception i_Exception) 
             { 
                 throw i_Exception;
             }
