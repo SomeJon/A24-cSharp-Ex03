@@ -65,10 +65,16 @@ Defined Licenses:
 {0}", availableLicenses);
                     throw new FormatException(exceptionMsg);
                 }
+
                 if (!int.TryParse(i_Atributes[1], out m_EngineVolume))
                 {
-                    throw new FormatException("Motorcycle-EngineVolume: Wrong format! Expected an int");
+                    throw new FormatException("Motorcycle-EngineVolume: Wrong format! Expected a non negetive integer");
                 }
+                else if(m_EngineVolume < 0)
+                {
+                    throw new ArgumentException("Motorcycle-EngineVolume: Expected value to be a non negetive integer!");
+                }
+                
             }
             catch (Exception i_Exception)
             {
