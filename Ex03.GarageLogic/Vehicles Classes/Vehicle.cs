@@ -96,6 +96,14 @@ namespace Ex03.GarageLogic
             return !(i_Card == i_Compare);
         }
 
+        /// <summary>
+        /// We are going for a load and save system in each class of vehicle, where the UI can ask for the needed
+        /// paramters name and ask for them in order, and then ask to load them. the UI can also recive the paramters
+        /// values and print them as it show fit, rather then reciving a premade list and then being stuck with how
+        /// the string is built. also, if so desired by future UI, it allows saving into files and reading from files
+        /// without a change to the dll.
+        /// </summary>
+        /// <returns></returns>
         public virtual List<string> GetAttributeNameList()
         {
             List<string> attributeNeeded = new List<string> { "Model Name" };

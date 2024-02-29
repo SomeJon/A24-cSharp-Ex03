@@ -85,7 +85,7 @@ namespace Ex03.GarageLogic
             i_Atributes.RemoveRange(0, numOfExpectedAttributes);
         }
 
-        public override List<string> GetAttributeValuesAsStringList()
+        internal override List<string> GetAttributeValuesAsStringList()
         {
             string retValue = string.Format(@"{0} of type {1}, {2:P2} of capacity", m_CurrentFuel, r_FuelType, CurrentPowerPercentage);
             return new List<string> { retValue };
