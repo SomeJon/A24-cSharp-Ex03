@@ -46,7 +46,9 @@ namespace Ex03.GarageLogic
 
         internal override List<string> GetAttributeNameList()
         {
-            string attributeCharge = string.Format(@"Amount of charge of battery (max: {0})", r_BatteryCapacityHours);
+            TimeSpan timeSpan = TimeSpan.FromHours(r_BatteryCapacityHours);
+            string attributeCharge = string.Format(@"Amount of charge of battery (max: {0}:{1})", timeSpan.Hours, timeSpan.Minutes);
+
             return new List<string> { attributeCharge };
         }
 
@@ -73,7 +75,9 @@ namespace Ex03.GarageLogic
 
         internal override List<string> GetAttributeValuesAsStringList()
         {
-            string retValue = string.Format(@"{0}, {1:P2} of capacity", m_BatteryLevel, CurrentPowerPercentage);
+            TimeSpan timeSpan = TimeSpan.FromHours(m_BatteryLevel);
+            string retValue = string.Format(@"{0}:{1}, {2:P2}/100%", timeSpan.Hours, timeSpan.Minutes, CurrentPowerPercentage);
+
             return new List<string> { retValue };
         }
     }
