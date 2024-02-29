@@ -202,7 +202,7 @@ k_MenuOption5, k_MenuOption6, k_MenuOption7, ' ', k_MenuOption0, new String('-',
 
         internal static void PrintAllInfoOfCard(GarageVehicleCard i_CardToPrintInfo)
         {
-            List<string> attributeNames = i_CardToPrintInfo.GetAttributesList();
+            List<string> attributeNames = i_CardToPrintInfo.GetAttributeNameList();
             List<string> attributeValues = i_CardToPrintInfo.GetAttributeValuesAsStringList();
 
             Console.WriteLine(@"{0}: {1}", Messages.k_Status, i_CardToPrintInfo.VehicleStatus);
@@ -228,12 +228,12 @@ k_MenuOption5, k_MenuOption6, k_MenuOption7, ' ', k_MenuOption0, new String('-',
             if(Vehicle.LoadAllWheelsAtOnce == true)
             {
                 Vehicle.SwitchLoadAllWheelsAtOnce();
-                attributeNames = i_VehicleToPrintInfo.GetAttributesList();
+                attributeNames = i_VehicleToPrintInfo.GetAttributeNameList();
                 Vehicle.SwitchLoadAllWheelsAtOnce();
             }
             else
             {
-                attributeNames = i_VehicleToPrintInfo.GetAttributesList();
+                attributeNames = i_VehicleToPrintInfo.GetAttributeNameList();
             }
 
             attributeValues = i_VehicleToPrintInfo.GetAttributeValuesAsStringList();

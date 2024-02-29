@@ -58,7 +58,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-        internal override List<string> GetAttributesList()
+        internal override List<string> GetAttributeNameList()
         {
             string attributeFuel = string.Format(@"Amount of fuel, expected fuel to match engine (max: {0})", r_TankCapacityLiters);
             return new List<string> { attributeFuel };

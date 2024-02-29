@@ -33,9 +33,9 @@ namespace Ex03.GarageLogic
         }
 
 
-        public override List<string> GetAttributesList()
+        public override List<string> GetAttributeNameList()
         {
-            List<string> attributeBase = base.GetAttributesList();
+            List<string> attributeBase = base.GetAttributeNameList();
             List<string> attributeNeeded = new List<string> { "Car Color", "Number of Doors" };
 
             attributeBase.AddRange(attributeNeeded);

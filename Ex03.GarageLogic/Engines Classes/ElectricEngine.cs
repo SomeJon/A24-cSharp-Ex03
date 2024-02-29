@@ -44,7 +44,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-        internal override List<string> GetAttributesList()
+        internal override List<string> GetAttributeNameList()
         {
             string attributeCharge = string.Format(@"Amount of charge of battery (max: {0})", r_BatteryCapacityHours);
             return new List<string> { attributeCharge };

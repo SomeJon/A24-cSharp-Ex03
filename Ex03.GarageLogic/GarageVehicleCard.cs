@@ -33,7 +33,7 @@ namespace Ex03.GarageLogic
             set { m_VehicleStatus = value; }
         }
 
-        public virtual List<string> GetAttributesList()
+        public virtual List<string> GetAttributeNameList()
         {
             return new List<string> { "Owner's name", "Owner's phone number"};
         }
