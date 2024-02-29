@@ -46,6 +46,11 @@ namespace Ex03.GarageLogic
         {
             try
             {
+                if (i_AmountOfAirToFill < 0)
+                {
+                    throw new ArgumentException("Expected a non negetive amount in type float!");
+                }
+
                 AirPressure += i_AmountOfAirToFill;
             }
             catch(ValueOutOfRangeException io_FailedAddingAirPressure)

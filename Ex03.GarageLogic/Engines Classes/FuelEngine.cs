@@ -25,6 +25,11 @@ namespace Ex03.GarageLogic
             {
                 try
                 {
+                    if (m_CurrentFuel < 0)
+                    {
+                        throw new ArgumentException("Expected a non negetive amount in type float!");
+                    }
+
                     FrequantActions.EnterFloatValueInRange(out m_CurrentFuel, value, "Fuel", r_TankCapacityLiters);
                     CurrentPowerPercentage = m_CurrentFuel / r_TankCapacityLiters;
                 }
