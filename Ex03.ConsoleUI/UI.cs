@@ -42,7 +42,6 @@ namespace Ex03.ConsoleUI
             internal const string k_Status = "Status";
             internal const string k_GetStatus = "Please choose a number representing status of vehicle:";
             internal const string k_Found = "Found";
-            internal const string k_AddingFuelType = "Please chose a fuel type from list to fill:";
             internal const string k_AddingActionFloat = "Please chose an amount to {0}:";
             internal const string k_Nun = "None were found.";
 
@@ -54,6 +53,7 @@ namespace Ex03.ConsoleUI
 3) Paid vehicles licences cards
 
 0) back";
+            internal const string k_ShowFuelTypeChoiceOpening = "Please choose a number representing a fuel type to enter:";
 
 
             internal static string k_MenuOptions = string.Format(
@@ -308,14 +308,19 @@ k_MenuOption5, k_MenuOption6, k_MenuOption7, ' ', k_MenuOption0, new String('-',
 
         internal static void GetFueFillType(out FuelEngine.eFuelType i_TypeOfFuel)
         {
-            Console.WriteLine(Messages.k_AddingFuelType);
             string userStrInput;
             bool isInputOk = false;
             FuelEngine.eFuelType userChoice;
+            int choiceCounter = 1;
 
-            Console.WriteLine(Messages.k_ShowLicencesOfCarsMenu);
+            Console.WriteLine(Messages.k_ShowFuelTypeChoiceOpening);
+            foreach (string enumChoiceName in Enum.GetNames(typeof(FuelEngine.eFuelType)))
+            {
+                Console.WriteLine(@"{0}) {1}", choiceCounter, enumChoiceName);
+                choiceCounter++;
+            }
+                
             userStrInput = Console.ReadLine();
-
             isInputOk = FuelEngine.eFuelType.TryParse(userStrInput, out userChoice);
             while (!isInputOk || !Enum.IsDefined(typeof(FuelEngine.eFuelType), userChoice))
             {
