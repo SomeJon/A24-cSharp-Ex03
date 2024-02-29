@@ -17,14 +17,14 @@ namespace Ex03.ConsoleUI
             internal const string k_MenuOption0 = "0) Exit";
             internal const string k_MenuOption1 = "1) Enter a new vehicle to the garage";
             internal const string k_MenuOption2 = "2) Show garage's car's license plates with the option to filter by vehicle condition";
-            internal const string k_MenuOption3 = "3) Change a car's state";
-            internal const string k_MenuOption4 = "4) Inflate a car's wheels to maximum air pressure";
-            internal const string k_MenuOption5 = "5) Fuel up a fuel car";
-            internal const string k_MenuOption6 = "6) Charge an electric car";
+            internal const string k_MenuOption3 = "3) Change a vehicle's state";
+            internal const string k_MenuOption4 = "4) Inflate a vehicle's wheels to maximum air pressure";
+            internal const string k_MenuOption5 = "5) Fuel up a fuel vehicke";
+            internal const string k_MenuOption6 = "6) Charge an electric vehicle";
             internal const string k_MenuOption7 = "7) Show a vehicle's full details";
             internal const string k_MenuOption8 = "8) Change new vehicle load settings menu";
 
-            internal const string k_IncorrectInput = "Entered input in incorrect. please choose again: ";
+            internal const string k_IncorrectInput = "Entered input is incorrect. please choose again: ";
             internal const string k_GetLicensePlate = "Please enter vehicle's license plate: ";
             internal const string k_VehicleNotInGarage = "There is no matching vehicle in garage.";
             internal const string k_AttributeListRequest = @"Please enter the requsted info of {0}:";
@@ -50,7 +50,7 @@ namespace Ex03.ConsoleUI
 1) All vehicles licences
 2) Vehicles licences yet to be Repaired
 3) Repaired vehicles licences
-3) Paid vehicles licences cards
+4) Paid vehicles licences cards
 
 0) back";
             internal const string k_ShowFuelTypeChoiceOpening = "Please choose a number representing a fuel type to enter:";
