@@ -142,7 +142,7 @@ namespace Ex03.GarageLogic
                     {
                         wheel.EnterAtributes(i_Atributes, !v_DeleteWheelAttribue);
                     }
-                    i_Atributes.RemoveRange(0, Wheel.numOfExpectedAttributesWheels);
+                    i_Atributes.RemoveRange(0, Wheel.k_NumOfExpectedAttributesWheels);
                 }
                 else
                 {
