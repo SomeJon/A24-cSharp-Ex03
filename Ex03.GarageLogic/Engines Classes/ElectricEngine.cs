@@ -36,6 +36,11 @@ namespace Ex03.GarageLogic
         {
             try
             {
+                if(i_amountToCharge < 0)
+                {
+                    throw new ArgumentException("Expected a non negetive amount in type float!");
+                }
+
                 BatteryLevel += i_amountToCharge;
             }
             catch(ValueOutOfRangeException io_FailedChargingBattery) 
