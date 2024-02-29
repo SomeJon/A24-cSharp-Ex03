@@ -97,7 +97,19 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                throw new FormatException("Car-Color: Wrong format! Expected a defined color!");
+                StringBuilder availableColors = new StringBuilder();
+                string exceptionMsg;
+
+                foreach(string colorName in Enum.GetNames(typeof(eColor)))
+                {
+                    availableColors.AppendLine(colorName);
+                }
+
+                exceptionMsg = string.Format(
+@"Car-Color: Wrong format! Expected a defined color! 
+Defined Colors:
+{0}", availableColors);
+                throw new FormatException(exceptionMsg);
             }
 
             return retColor;
