@@ -26,6 +26,27 @@ namespace Ex03.GarageLogic
             return m_ListOfVehicles.Find(card => (card.CardVehicle == i_LicensePlate)); ;
         }
 
+        public void FillVehicleWheelsToMax(string i_VehicleLicenseToAddAirToWheels)
+        {
+            GarageVehicleCard foundCard = this.FindVehicle(i_VehicleLicenseToAddAirToWheels);
+
+            if (foundCard != null)
+            {
+                try
+                {
+                    foundCard.CardVehicle.FillWheelsToMax();
+                }
+                catch (Exception i_Exception)
+                {
+                    throw i_Exception;
+                }
+            }
+            else
+            {
+                throw new Exception("Card Could not be found!");
+            }
+        }
+
         public List<string> FindAllMatchLicences(GarageVehicleCard.eVehicleStatus i_WantedStatus)
         {
             List<GarageVehicleCard> Matches = m_ListOfVehicles.FindAll(card => (card.VehicleStatus == i_WantedStatus));

@@ -9,10 +9,10 @@ namespace Ex03.GarageLogic
 {
     public abstract class Vehicle
     {
-        protected readonly string r_LicensePlate;
-        protected string m_Model;
+        private readonly string r_LicensePlate;
+        private string m_Model;
         protected List<Wheel> m_Wheels = new List<Wheel>();
-        protected Engine m_Engine;
+        private Engine m_Engine;
         private static bool s_LoadAllWheelsAtOnce = true;
 
         public Engine Engine 
@@ -24,15 +24,15 @@ namespace Ex03.GarageLogic
             get { return s_LoadAllWheelsAtOnce; }
         }
 
+        public string LicensePlate
+        {
+            get { return r_LicensePlate; }
+        }
+
         internal Vehicle(string i_LicensePlate, Engine i_VehicleEngine)
         {
             r_LicensePlate  = i_LicensePlate;
             m_Engine        = i_VehicleEngine;
-        }
-
-        public string LicensePlate
-        {
-            get { return r_LicensePlate; }
         }
 
         public bool IsElectric()
@@ -40,7 +40,7 @@ namespace Ex03.GarageLogic
             return m_Engine is ElectricEngine;
         }
 
-        public void FillWheelsToMax()
+        internal void FillWheelsToMax()
         {
             foreach(Wheel wheel in m_Wheels)
             {
