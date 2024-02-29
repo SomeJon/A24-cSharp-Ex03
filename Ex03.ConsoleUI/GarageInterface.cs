@@ -140,7 +140,7 @@ namespace Ex03.ConsoleUI
             else
             {
                 newCard = new GarageVehicleCard();
-                recivedAttributes = UI.GetAttributes(newCard.GetAttributesList(), "Card Entry");
+                recivedAttributes = UI.GetAttributes(newCard.GetAttributeNameList(), "Card Entry");
                 newCard.EnterAtributes(recivedAttributes);
                 vehicleChosen = UI.GetVehicleChoice();
                 newVehicle = VehicleFactory.CreateVehicle(vehicleChosen, recivedLicense);
@@ -150,7 +150,7 @@ namespace Ex03.ConsoleUI
                 {
                     try
                     {
-                        recivedAttributes = UI.GetAttributes(newVehicle.GetAttributesList(), newVehicle.GetType().Name);
+                        recivedAttributes = UI.GetAttributes(newVehicle.GetAttributeNameList(), newVehicle.GetType().Name);
                         newVehicle.EnterAtributes(recivedAttributes);
                         checkSuccess = true;
                     }

@@ -15,7 +15,7 @@ namespace Ex03.GarageLogic
         }
 
 
-        internal abstract List<string> GetAttributesList();
+        internal abstract List<string> GetAttributeNameList();
 
         internal abstract void EnterAtributes(List<string> i_Atributes);
 

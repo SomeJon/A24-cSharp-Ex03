@@ -96,20 +96,20 @@ namespace Ex03.GarageLogic
             return !(i_Card == i_Compare);
         }
 
-        public virtual List<string> GetAttributesList()
+        public virtual List<string> GetAttributeNameList()
         {
             List<string> attributeNeeded = new List<string> { "Model Name" };
-            attributeNeeded.AddRange(m_Engine.GetAttributesList());
+            attributeNeeded.AddRange(m_Engine.GetAttributeNameList());
             if (LoadAllWheelsAtOnce)
             {
-                attributeNeeded.AddRange(m_Wheels[0].GetAttributesList("All Wheels"));
+                attributeNeeded.AddRange(m_Wheels[0].GetAttributeNameList("All Wheels"));
             }
             else
             {
                 int count = 1;
                 foreach (Wheel wheel in m_Wheels)
                 {
-                    List<string> attributeWheel = wheel.GetAttributesList(string.Format(@"Wheel {0}", count));
+                    List<string> attributeWheel = wheel.GetAttributeNameList(string.Format(@"Wheel {0}", count));
                     attributeNeeded.AddRange(attributeWheel);
                     count++;
                 }
