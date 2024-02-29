@@ -186,22 +186,14 @@ namespace Ex03.ConsoleUI
         internal void InflateCarWheels() 
         {
             string recivedLicense = UI.GetLicensePlate();
-            GarageVehicleCard foundCard = m_Garage.FindVehicle(recivedLicense);
-
-            if (foundCard != null)
+            
+            try
             {
-                try
-                {
-                    foundCard.CardVehicle.FillWheelsToMax();
-                }
-                catch(Exception i_Exception)
-                {
-                    UI.PrintExceptions(i_Exception);
-                }
+                m_Garage.FillVehicleWheelsToMax(recivedLicense);
             }
-            else
+            catch(Exception i_Exception)
             {
-                UI.PrintExceptions(new Exception("Card Could not be found!"));
+                UI.PrintExceptions(i_Exception);
             }
         }
 
