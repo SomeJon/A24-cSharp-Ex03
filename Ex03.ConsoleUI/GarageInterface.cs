@@ -250,7 +250,7 @@ namespace Ex03.ConsoleUI
                     }
                     else
                     {
-                        UI.PrintExceptions(new ArgumentException("Chosen vehicle does not run on fuel!"));
+                        UI.PrintExceptions(new ArgumentException("Chosen vehicle is not electric!"));
                     }
                 }
                 catch (Exception i_Exception)
