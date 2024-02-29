@@ -39,7 +39,7 @@ namespace Ex03.GarageLogic
             try
             {
                 base.EnterAtributes(i_Atributes);
-                m_HazardousMaterial = turnStringbool(i_Atributes[0]);
+                m_HazardousMaterial = turnStringBool(i_Atributes[0]);
                 if (!bool.TryParse(i_Atributes[0], out m_HazardousMaterial))
                 
                 if (!float.TryParse(i_Atributes[1], out m_CargoVolume))
@@ -64,7 +64,7 @@ namespace Ex03.GarageLogic
             return attributeBase;
         }
 
-        private bool turnStringbool(string i_WantedBool)
+        private bool turnStringBool(string i_WantedBool)
         {
             bool retBool;
 
