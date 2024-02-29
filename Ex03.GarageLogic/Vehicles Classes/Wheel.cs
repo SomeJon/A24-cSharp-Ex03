@@ -26,7 +26,7 @@ namespace Ex03.GarageLogic
             {
                 try
                 {
-                    FrequantActions.EnterFloatValueInRange(ref m_AirPressure, value, "Air Pressure", r_MaxAirPressure);
+                    FrequantActions.EnterFloatValueInRange(out m_AirPressure, value, "Air Pressure", r_MaxAirPressure);
                 }
                 catch(ValueOutOfRangeException io_MaxAirPressurePassed)
                 {
@@ -78,7 +78,7 @@ namespace Ex03.GarageLogic
                 {
                     throw new FormatException("Wheels-Amount of air to fill: Wrong format! expected Air Pressure to fill to be entered as a float!");
                 }
-                FillAir(amountToFill);
+                FrequantActions.EnterFloatValueInRange(out m_AirPressure, amountToFill, "Air Pressure", MaxAirPressure);
             }
             catch (Exception i_Exception)
             {
