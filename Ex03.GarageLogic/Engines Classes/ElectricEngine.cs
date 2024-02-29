@@ -52,7 +52,7 @@ namespace Ex03.GarageLogic
         internal override List<string> GetAttributeNameList()
         {
             TimeSpan timeSpan = TimeSpan.FromHours(r_BatteryCapacityHours);
-            string attributeCharge = string.Format(@"Amount of charge of battery (max: {0}:{1})", timeSpan.Hours, timeSpan.Minutes);
+            string attributeCharge = string.Format(@"Amount of charge of battery in hours (max: {0}:{1})", timeSpan.Hours, timeSpan.Minutes);
 
             return new List<string> { attributeCharge };
         }
