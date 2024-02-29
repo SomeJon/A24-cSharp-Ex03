@@ -160,8 +160,6 @@ namespace Ex03.ConsoleUI
                     }
                 }
 
-                UI.GetVehicleStatus(out statusChosen);
-                newCard.VehicleStatus = statusChosen;
                 m_Garage.AddCardToList(newCard);
             }
         }
