@@ -52,7 +52,7 @@ namespace Ex03.GarageLogic
 
         internal override void EnterAtributes(List<string> i_Atributes)
         {
-            const int numOfExpectedAttributes = 1;
+            const int k_NumOfExpectedAttributes = 1;
             float amountToCharge;
 
             try
@@ -68,7 +68,7 @@ namespace Ex03.GarageLogic
                 throw i_Exception;
             }
 
-            i_Atributes.RemoveRange(0, numOfExpectedAttributes);
+            i_Atributes.RemoveRange(0, k_NumOfExpectedAttributes);
         }
 
         internal override List<string> GetAttributeValuesAsStringList()
