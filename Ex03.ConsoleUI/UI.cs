@@ -19,7 +19,7 @@ namespace Ex03.ConsoleUI
             internal const string k_MenuOption2 = "2) Show garage's car's license plates with the option to filter by vehicle condition";
             internal const string k_MenuOption3 = "3) Change a vehicle's state";
             internal const string k_MenuOption4 = "4) Inflate a vehicle's wheels to maximum air pressure";
-            internal const string k_MenuOption5 = "5) Fuel up a fuel vehicke";
+            internal const string k_MenuOption5 = "5) Fuel up a fuel vehicle";
             internal const string k_MenuOption6 = "6) Charge an electric vehicle";
             internal const string k_MenuOption7 = "7) Show a vehicle's full details";
             internal const string k_MenuOption8 = "8) Change new vehicle load settings menu";

@@ -40,12 +40,15 @@ namespace Ex03.GarageLogic
             {
                 base.EnterAtributes(i_Atributes);
                 m_HazardousMaterial = turnStringBool(i_Atributes[0]);
-                if (!bool.TryParse(i_Atributes[0], out m_HazardousMaterial))
-                
                 if (!float.TryParse(i_Atributes[1], out m_CargoVolume))
                 {
                     throw new FormatException("Truck-Cargo Volume: Wrong format! Expected a float");
                 }
+                else if (m_CargoVolume < 0)
+                {
+                    throw new ArgumentException("Truck-Cargo Volume: Expected value to be a non negetive integer!");
+                }
+
             }
             catch (Exception i_Exception)
             {
