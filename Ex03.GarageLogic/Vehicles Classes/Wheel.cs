@@ -10,7 +10,7 @@ namespace Ex03.GarageLogic
         private string m_Manufacturer;
         private float m_AirPressure = 0;
         private readonly float r_MaxAirPressure;
-        internal const int k_NumOfExpectedAttributesWheels = 2;
+        internal const int k_k_NumOfExpectedAttributesWheels = 2;
 
         public string Manufacturer
         {
@@ -87,7 +87,7 @@ namespace Ex03.GarageLogic
 
             if (i_DeleteFromListAfterUse)
             {
-                i_Atributes.RemoveRange(0, k_NumOfExpectedAttributesWheels);
+                i_Atributes.RemoveRange(0, k_k_NumOfExpectedAttributesWheels);
             }
         }
 

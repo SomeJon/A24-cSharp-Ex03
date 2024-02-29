@@ -34,7 +34,7 @@ namespace Ex03.GarageLogic
 
         public override void EnterAtributes(List<string> i_Atributes)
         {
-            const int numOfExpectedAttributes = 2;
+            const int k_NumOfExpectedAttributes = 2;
 
             try
             {
@@ -52,7 +52,7 @@ namespace Ex03.GarageLogic
                 throw i_Exception;
             }
 
-            i_Atributes.RemoveRange(0, numOfExpectedAttributes);
+            i_Atributes.RemoveRange(0, k_NumOfExpectedAttributes);
         }
 
         public override List<string> GetAttributeValuesAsStringList()

@@ -128,13 +128,13 @@ namespace Ex03.GarageLogic
 
         public virtual void EnterAtributes(List<string> i_Atributes)
         {
-            const int numOfExpectedAttributes = 1;
+            const int k_NumOfExpectedAttributes = 1;
             const bool v_DeleteWheelAttribue = true;
 
             try
             {
                 m_Model = i_Atributes[0];
-                i_Atributes.RemoveRange(0, numOfExpectedAttributes);
+                i_Atributes.RemoveRange(0, k_NumOfExpectedAttributes);
                 m_Engine.EnterAtributes(i_Atributes);
                 if (LoadAllWheelsAtOnce)
                 {
@@ -142,7 +142,7 @@ namespace Ex03.GarageLogic
                     {
                         wheel.EnterAtributes(i_Atributes, !v_DeleteWheelAttribue);
                     }
-                    i_Atributes.RemoveRange(0, Wheel.k_NumOfExpectedAttributesWheels);
+                    i_Atributes.RemoveRange(0, Wheel.k_k_NumOfExpectedAttributesWheels);
                 }
                 else
                 {
