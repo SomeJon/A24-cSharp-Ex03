@@ -153,7 +153,12 @@ namespace Ex03.GarageLogic
         public virtual List<string> GetAttributeValuesAsStringList()
         {
             List<string> retList = new List<string> { m_Model };
+
             retList.AddRange(m_Engine.GetAttributeValuesAsStringList());
+            foreach (Wheel wheel in m_Wheels)
+            {
+                retList.AddRange(wheel.GetAttributeValuesAsStringList());
+            }
 
             return retList;
         }

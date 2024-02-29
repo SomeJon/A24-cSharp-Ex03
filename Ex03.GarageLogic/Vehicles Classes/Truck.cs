@@ -60,13 +60,6 @@ namespace Ex03.GarageLogic
             List<string> attributeBase = base.GetAttributeValuesAsStringList();
             List<string> attributeNeeded = new List<string> { m_HazardousMaterial.ToString(), m_CargoVolume.ToString() };
 
-
-            foreach (Wheel wheel in m_Wheels)
-            {
-                attributeBase.AddRange(wheel.GetAttributeValuesAsStringList());
-            }
-
-
             attributeBase.AddRange(attributeNeeded);
             return attributeBase;
         }
