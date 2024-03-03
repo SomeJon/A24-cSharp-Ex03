@@ -133,7 +133,7 @@ namespace Ex03.ConsoleUI
             Vehicle newVehicle;
             bool checkSuccess;
 
-            if (m_Garage.isVehicleInGarage(recivedLicense))
+            if (m_Garage.IsVehicleInGarage(recivedLicense))
             {
                 UI.CarInGarageMessage();
             }

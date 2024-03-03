@@ -35,11 +35,6 @@ namespace Ex03.GarageLogic
             m_Engine        = i_VehicleEngine;
         }
 
-        public bool IsElectric()
-        {
-            return m_Engine is ElectricEngine;
-        }
-
         internal void FillWheelsToMax()
         {
             foreach(Wheel wheel in m_Wheels)
@@ -59,7 +54,7 @@ namespace Ex03.GarageLogic
             Vehicle asVehicle = i_Compare as Vehicle;
             string asString = i_Compare as string;
 
-            if (asVehicle == null)
+            if (asVehicle != null)
             {
                 isEqual = r_LicensePlate == asVehicle.r_LicensePlate;
             }
@@ -76,25 +71,25 @@ namespace Ex03.GarageLogic
             return r_LicensePlate.GetHashCode();
         }
 
-        public static bool operator ==(Vehicle i_Card, object i_Compare)
+        public static bool operator ==(Vehicle i_Vehicle, object i_Compare)
         {
-            return Equals(i_Card, i_Compare);
+            return Equals(i_Vehicle, i_Compare);
         }
 
-        public static bool operator !=(Vehicle i_Card, object i_Compare)
+        public static bool operator !=(Vehicle i_Vehicle, object i_Compare)
         {
-            return !(i_Card == i_Compare);
+            return !(i_Vehicle == i_Compare);
         }
 
-        public static bool operator ==(Vehicle i_Card, string i_Compare)
-        {
-            return i_Card.r_LicensePlate == i_Compare;
-        }
+        //public static bool operator ==(Vehicle i_Vehicle, string i_Compare)
+        //{
+        //    return i_Vehicle.r_LicensePlate == i_Compare;
+        //}
 
-        public static bool operator !=(Vehicle i_Card, string i_Compare)
-        {
-            return !(i_Card == i_Compare);
-        }
+        //public static bool operator !=(Vehicle i_Vehicle, string i_Compare)
+        //{
+        //    return !(i_Vehicle == i_Compare);
+        //}
 
         /// <summary>
         /// We are going for a load and save system in each class of vehicle, where the UI can ask for the needed

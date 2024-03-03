@@ -16,9 +16,9 @@ namespace Ex03.GarageLogic
             get { return m_ListOfVehicles; }
         }
 
-        public void AddCardToList(GarageVehicleCard i_CardToAdd)
+        public void AddCardToList(GarageVehicleCard i_VehicleToAdd)
         {
-            m_ListOfVehicles.Add(i_CardToAdd);
+            m_ListOfVehicles.Add(i_VehicleToAdd);
         }
         
         public GarageVehicleCard FindVehicle(string i_LicensePlate)
@@ -49,7 +49,8 @@ namespace Ex03.GarageLogic
 
         public List<string> FindAllMatchLicences(GarageVehicleCard.eVehicleStatus i_WantedStatus)
         {
-            List<GarageVehicleCard> Matches = m_ListOfVehicles.FindAll(card => (card.VehicleStatus == i_WantedStatus));
+            List<GarageVehicleCard> Matches = 
+                m_ListOfVehicles.FindAll(card => (card.VehicleStatus == i_WantedStatus));
             return GetLicences(Matches);
         }
 
@@ -65,7 +66,7 @@ namespace Ex03.GarageLogic
             return licences;
         }
 
-        public bool isVehicleInGarage(string i_LicensePlate)
+        public bool IsVehicleInGarage(string i_LicensePlate)
         {
             bool carIsInGarage = false;
 
