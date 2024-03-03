@@ -219,7 +219,7 @@ k_MenuOption5, k_MenuOption6, k_MenuOption7, ' ', k_MenuOption0, new String('-',
             List<string> attributeNames;
             List<string> attributeValues;
 
-            if(i_VehicleToPrintInfo.IsElectric())
+            if (i_VehicleToPrintInfo.Engine is ElectricEngine)
             {
                 Console.Write(Messages.k_Electric);
             }
