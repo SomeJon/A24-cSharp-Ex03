@@ -29,27 +29,13 @@ namespace Ex03.ConsoleUI
             Paid
         }
 
-        private GarageData m_Garage;
         internal const int k_NumOfFirstMenuOption = 0;
         internal const int k_NumOfLastMenuOption = 7;
-
+        private GarageData m_Garage;
+        
         public GarageInterface()
         {
             m_Garage = new GarageData();
-        }
-        private void FullCardShow()
-        {
-            string licensePlate = UI.GetLicensePlate();
-            GarageVehicleCard foundCard = m_Garage.FindVehicle(licensePlate);
-
-            if(foundCard != null)
-            {
-                UI.PrintAllInfoOfCard(foundCard);
-            }
-            else
-            {
-                UI.PrintExceptions(new Exception("Card Could not be found!"));
-            }
         }
 
         internal void MenuRun(out bool o_StillRunning)
@@ -62,25 +48,25 @@ namespace Ex03.ConsoleUI
             switch (userChoice) 
             {
                 case eMenueOptions.EnterNewCar:
-                    EnterNewVehicle();
+                    enterNewVehicle();
                     break;
                 case eMenueOptions.ShowLicensePlates:
-                    ShowVehicleLicences();
+                    showVehicleLicences();
                     break;
                 case eMenueOptions.ChangeCarState:
-                    ChangeCardStatus();
+                    changeCardStatus();
                     break;
                 case eMenueOptions.InflateCarWheels:
-                    InflateCarWheels();
+                    inflateCarWheels();
                     break;
                 case eMenueOptions.FuelUpVehicle:
-                    FillVehicleFuel();
+                    fillVehicleFuel();
                     break;
                 case eMenueOptions.ChargeUpVehicle:
-                    ChargeElectricVehicle();
+                    chargeElectricVehicle();
                     break;
                 case eMenueOptions.FullCardShow:
-                    FullCardShow();
+                    fullCardShow();
                     break;
                 case eMenueOptions.ChangeCarLoadSetting:
                     UI.ChangeWheelsSetupMenu();
@@ -92,7 +78,22 @@ namespace Ex03.ConsoleUI
             }
         }
 
-        internal void ShowVehicleLicences()
+        private void fullCardShow()
+        {
+            string licensePlate = UI.GetLicensePlate();
+            GarageVehicleCard foundCard = m_Garage.FindVehicle(licensePlate);
+
+            if (foundCard != null)
+            {
+                UI.PrintAllInfoOfCard(foundCard);
+            }
+            else
+            {
+                UI.PrintExceptions(new Exception("Card Could not be found!"));
+            }
+        }
+
+        private void showVehicleLicences()
         {
             eShowLicenceMenu userChoice;
             List<string> licences;
@@ -123,13 +124,12 @@ namespace Ex03.ConsoleUI
             }
         }
 
-        internal void EnterNewVehicle()
+        private void enterNewVehicle()
         {
             string recivedLicense = UI.GetLicensePlate();
             List<string> recivedAttributes;
             GarageVehicleCard newCard;
             VehicleFactory.eVehicleOptions vehicleChosen;
-            eVehicleStatus statusChosen;
             Vehicle newVehicle;
             bool checkSuccess;
 
@@ -164,7 +164,7 @@ namespace Ex03.ConsoleUI
             }
         }
 
-        internal void ChangeCardStatus()
+        private void changeCardStatus()
         {
             string recivedLicense = UI.GetLicensePlate();
             GarageVehicleCard foundCard = m_Garage.FindVehicle(recivedLicense);
@@ -181,7 +181,7 @@ namespace Ex03.ConsoleUI
             }
         }
 
-        internal void InflateCarWheels() 
+        private void inflateCarWheels() 
         {
             string recivedLicense = UI.GetLicensePlate();
             
@@ -195,7 +195,7 @@ namespace Ex03.ConsoleUI
             }
         }
 
-        internal void FillVehicleFuel()
+        private void fillVehicleFuel()
         {
             string recivedLicense = UI.GetLicensePlate();
             GarageVehicleCard foundCard = m_Garage.FindVehicle(recivedLicense);
@@ -230,7 +230,7 @@ namespace Ex03.ConsoleUI
             }
         }
 
-        internal void ChargeElectricVehicle()
+        private void chargeElectricVehicle()
         {
             string recivedLicense = UI.GetLicensePlate();
             GarageVehicleCard foundCard = m_Garage.FindVehicle(recivedLicense);

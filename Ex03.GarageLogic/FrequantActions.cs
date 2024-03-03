@@ -23,7 +23,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public static void EnterintValueInRange(out int o_Value, int i_Value, string i_ValueName, int i_MaxValue, int i_MinValue = 0)
+        public static void EnterIntValueInRange(out int o_Value, int i_Value, string i_ValueName, int i_MaxValue, int i_MinValue = 0)
         {
             if (i_Value <= i_MaxValue && i_Value >= i_MinValue)
             {

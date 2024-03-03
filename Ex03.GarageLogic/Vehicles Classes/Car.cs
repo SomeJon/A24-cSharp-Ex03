@@ -55,7 +55,7 @@ namespace Ex03.GarageLogic
                 {
                     throw new FormatException("Car-Doors: Wrong format! Expected an int");
                 }
-                FrequantActions.EnterintValueInRange(out m_NumOfDoors, inputedValue, "Number of doors", k_MaxDoors, k_MinDoors);
+                FrequantActions.EnterIntValueInRange(out m_NumOfDoors, inputedValue, "Number of doors", k_MaxDoors, k_MinDoors);
                 
             }
             catch (Exception i_Exception)

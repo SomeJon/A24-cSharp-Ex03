@@ -18,7 +18,7 @@ namespace Ex03.GarageLogic
         }
 
         public static List<string>  s_VehicleOptions = new List<string> 
-            { "Normal Car", "Electric Car", "Normal Motorcycle", "ElectricMotorcycle", "Truck"};
+            { "Normal Car", "Electric Car", "Normal Motorcycle", "Electric Motorcycle", "Truck"};
 
         public static Vehicle CreateVehicle(eVehicleOptions i_VehicleChoice, string i_LicensePlate)
         {
