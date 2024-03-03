@@ -10,7 +10,7 @@ namespace Ex03.ConsoleUI
 {
     internal class UI
     {
-        internal class Messages
+        private class Messages
         {
             internal const string k_Opening = "Hello! welcome to the garage!.";
 
@@ -56,7 +56,7 @@ namespace Ex03.ConsoleUI
             internal const string k_ShowFuelTypeChoiceOpening = "Please choose a number representing a fuel type to enter:";
 
 
-            internal static string k_MenuOptions = string.Format(
+            internal static string s_MenuOptions = string.Format(
 @"{0}Menu{0}
 |{1, -94}|
 |{2, -94}|
@@ -85,7 +85,7 @@ k_MenuOption5, k_MenuOption6, k_MenuOption7, ' ', k_MenuOption0, new String('-',
             bool isInputOk = false;
             GarageInterface.eMenueOptions userChoice;
 
-            Console.WriteLine(Messages.k_MenuOptions);
+            Console.WriteLine(Messages.s_MenuOptions);
             userStrInput = Console.ReadLine();
 
             isInputOk = GarageInterface.eMenueOptions.TryParse(userStrInput, out userChoice);

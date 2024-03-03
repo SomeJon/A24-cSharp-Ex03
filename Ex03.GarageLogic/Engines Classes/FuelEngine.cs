@@ -78,7 +78,7 @@ namespace Ex03.GarageLogic
             {
                 if (!float.TryParse(i_Atributes[0], out amountToFill))
                 {
-                    throw new FormatException("Fuel Engine-Amount To Fill: Wrong format! expected battery charge to be a float!");
+                    throw new FormatException("Fuel Engine-Amount To Fill: Wrong format! expected amount of fuel to be a float!");
                 }
                 FrequantActions.EnterFloatValueInRange(out m_CurrentFuel, amountToFill, "Fuel", r_TankCapacityLiters);
                 CurrentPowerPercentage = m_CurrentFuel / r_TankCapacityLiters;
