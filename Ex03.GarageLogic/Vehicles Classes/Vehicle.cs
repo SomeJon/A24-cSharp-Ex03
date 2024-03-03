@@ -81,16 +81,6 @@ namespace Ex03.GarageLogic
             return !(i_Vehicle == i_Compare);
         }
 
-        //public static bool operator ==(Vehicle i_Vehicle, string i_Compare)
-        //{
-        //    return i_Vehicle.r_LicensePlate == i_Compare;
-        //}
-
-        //public static bool operator !=(Vehicle i_Vehicle, string i_Compare)
-        //{
-        //    return !(i_Vehicle == i_Compare);
-        //}
-
         /// <summary>
         /// We are going for a load and save system in each class of vehicle, where the UI can ask for the needed
         /// paramters name and ask for them in order, and then ask to load them. the UI can also recive the paramters
